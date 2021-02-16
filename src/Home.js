@@ -2,6 +2,10 @@ import './App.css';
 import fire from "./config/fire";
 import {db} from "./config/fire";
 import React,{Component} from 'react';
+import Aside from './sidebar.js';
+import Users from './Users';
+
+
 
 class Home extends Component{
 
@@ -32,22 +36,21 @@ class Home extends Component{
   render(){
     return(
 
-      <div>
+      <div className='app'>
 
-        <h1>test</h1>
-
+        
+<Aside ></Aside>
         {
-
 this.state.composts && this.state.composts.map(compost => {
 
   return(
+<>
 
-    <div>
 
     <p>{compost.Date}</p>
 
-    </div>
 
+</>
   )
 })
 
