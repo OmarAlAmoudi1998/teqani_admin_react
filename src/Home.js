@@ -1,30 +1,64 @@
-import React , { Component } from "react";
+import './App.css';
 import fire from "./config/fire";
+import {db} from "./config/fire";
+import React,{Component} from 'react';
 
 class Home extends Component{
-constructor(props)
-{
- super(props)
+
+
+  state = {
+
+    composts:null
+
+
+  }
+
+  componentDidMount(){
+
+    console.log('mounted')
+    db.collection('posts/Computer/posts').get().then( snapshot=>{
+
+      const composts = []
+      snapshot.forEach( doc => {
+        const data = doc.data()
+        composts.push(data)
+      })
+      this.setState({composts: composts})
+
+    }).catch(error => console.log(error))
     
-    
-}
-logout(){
-    fire.auth().signOut();
-    this.props.history.push('/sign-in')
-}
-render()
-{
+  }
+
+  render(){
     return(
-        <div>
-           <h1>You are logged in !!!</h1>
-           <button
-          onClick={() => {
-            fire.auth().signOut();
-            this.props.history.push("/sign-in");}}>
-          Logout
-        </button>    
-            </div>
+
+      <div>
+
+        <h1>test</h1>
+
+        {
+
+this.state.composts && this.state.composts.map(compost => {
+
+  return(
+
+    <div>
+
+    <p>{compost.Date}</p>
+
+    </div>
+
+  )
+})
+
+        }
+
+      </div>
+
     )
+
+  }
+
 }
-}
-export default Home;
+
+export default Home ;
