@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 import {   ProSidebar,   Menu,   MenuItem,    SubMenu,   SidebarHeader,   SidebarFooter,   SidebarContent, } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 import './sidebar.scss';
+import logo from './Tlogo.png';
 
 export default function Aside () {
 
@@ -16,11 +17,11 @@ export default function Aside () {
 <ProSidebar
     //   collapsed={collapsed}
     //   toggled={toggled}
-      breakPoint="md"
+      // breakPoint="md"
     //   onToggle={handleToggleSidebar}
       width="240px"
     >
-      {/* <SidebarHeader>
+      { <SidebarHeader>
         <div
           style={{
             padding: "24px",
@@ -32,8 +33,8 @@ export default function Aside () {
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
           }}
-        ></div>
-      </SidebarHeader> */}
+        ><img className='logoHome' src={logo} alt="Logo"  /></div>
+      </SidebarHeader> }
 
       <SidebarContent>
         <Menu iconShape="circle">
@@ -74,7 +75,7 @@ export default function Aside () {
             }
           >
             Calendar
-            <Link to="/update-profile" />
+            <Link to="/Users" />
           </MenuItem>
           <MenuItem
             className="mb-3"

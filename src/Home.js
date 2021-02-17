@@ -2,9 +2,9 @@ import './App.css';
 import fire from "./config/fire";
 import {db} from "./config/fire";
 import React,{Component} from 'react';
-import Aside from './sidebar.js';
-import Users from './Users';
 
+import Users from './Users';
+import './Home.css';
 
 
 class Home extends Component{
@@ -36,10 +36,10 @@ class Home extends Component{
   render(){
     return(
 
-      <div className='app'>
+      <div >
 
         
-<Aside ></Aside>
+
         {
 this.state.composts && this.state.composts.map(compost => {
 

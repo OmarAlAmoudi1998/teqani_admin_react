@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
-$sidebar-bg-color: #f5a494;
+$sidebar-bg-color: #45a29e;
 $submenu-bg-color: rgba(255, 255, 255, 0.05);
 $submenu-bg-color-collapsed: rgba(29, 29, 29, 0.95);
 $sidebar-color: black;
-$highlight-color: #f07474;
+$highlight-color: #ffffff;
 $icon-bg-color: rgba(255, 255, 255, 0.05);
 $icon-size: 35px;
 
@@ -20,7 +20,11 @@ body {
 #root {
   height: 100%;
 }
+.__a{
+  overflow: hidden;
 
+
+}
 .app {
   height: 100%;
   display: inline-flex;
