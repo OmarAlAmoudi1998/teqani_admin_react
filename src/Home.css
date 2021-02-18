@@ -13,3 +13,46 @@
   overflow: hidden;
 
 }
+
+.HomeDesign{
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #0b0c10, #1f2833);
+        position: relative;
+}
+
+.fBar{
+
+    height: 300px;
+    background: linear-gradient(to bottom, #45a29e, #66fcf1);
+
+}
+
+.Welcome{
+    margin-right: 900px;
+    font-size: 120px;
+    font-weight: bolder;
+
+}
+._user{
+
+    margin-right: 980px;
+    font-size: 60px;
+    font-weight: bold;
+
+}
+
+.root {
+    minWidth: 275,
+  }
+  .bullet {
+    display: 'inline-block';
+    margin: '0 2px';
+    transform: 'scale(0.8)',
+  }
+  .title {
+    fontSize: 14,
+  }
+  .pos {
+    marginBottom: 12,
+  }

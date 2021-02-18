@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
-$sidebar-bg-color: #45a29e;
+$sidebar-bg-color: linear-gradient(to right, #0b0c10, #1f2833); 
 $submenu-bg-color: rgba(255, 255, 255, 0.05);
 $submenu-bg-color-collapsed: rgba(29, 29, 29, 0.95);
-$sidebar-color: black;
-$highlight-color: #ffffff;
+$sidebar-color: white;
+$highlight-color: #45a29e;
 $icon-bg-color: rgba(255, 255, 255, 0.05);
 $icon-size: 35px;
 

@@ -6,17 +6,23 @@ import Home from "./Home"
 import Login from "./Login";
 import Users from "./Users";
 import Aside from './sidebar.js';
+import { AuthPage } from "./AuthPage";
 function App() {
   return (
     <Router>
+      
       <div className="App app">
-        <Aside ></Aside>
+      
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
+              <div className="App app">
+                <Aside></Aside>
               {/* <Route path="/sign-up" component={SignUp} /> */}
               <Route path="/Home" component={Home} />
               <Route path="/Users" component={Users} />
+              <Route path="/authp" component={AuthPage} />
+              </div>
             </Switch>
           
         
