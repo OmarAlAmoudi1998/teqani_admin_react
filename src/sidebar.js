@@ -92,7 +92,7 @@ export default function Aside() {
                 </svg>
               }
             >
-              Clients <Link to="/authp" />
+              Customers <Link to="/customers" />
             </MenuItem>
             <MenuItem
               style={{ fontSize: "24px" }}

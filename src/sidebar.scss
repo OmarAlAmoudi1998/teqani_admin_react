@@ -28,7 +28,7 @@ body {
 .app {
   height: 100%;
   display: inline-flex;
-  position: relative;
+  position: sticky;
   width: 100%;
 
   .btn-toggle {

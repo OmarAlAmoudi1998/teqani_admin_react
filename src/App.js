@@ -6,7 +6,8 @@ import Home from "./Home"
 import Login from "./Login";
 import Users from "./Users";
 import Aside from './sidebar.js';
-import { AuthPage } from "./AuthPage";
+import Customers from './Customers.js';
+import SignUp from './SignUp.js';
 function App() {
   return (
     <Router>
@@ -21,7 +22,7 @@ function App() {
               {/* <Route path="/sign-up" component={SignUp} /> */}
               <Route path="/Home" component={Home} />
               <Route path="/Users" component={Users} />
-              <Route path="/authp" component={AuthPage} />
+              <Route path="/customers" component={Customers} />
               </div>
             </Switch>
           

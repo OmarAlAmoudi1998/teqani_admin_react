@@ -1,7 +1,6 @@
 import './App.css';
 import fire from "./config/fire";
 import { db } from "./config/fire";
-import { AuthPage } from "./AuthPage";
 import React, { Component } from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -110,7 +109,20 @@ render() {
 
 
       <h1>OMAR </h1>
-
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
+      <h1>OMAR </h1>
       {
         this.state.composts && this.state.composts.map(compost => {
           return (
