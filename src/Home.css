@@ -16,7 +16,7 @@
 
 .HomeDesign{
         width: 100%;
-        height: 100%;
+        height: auto;
         background: linear-gradient(to right, #0b0c10, #1f2833);
         position: relative;
 }
@@ -27,11 +27,21 @@
     background: linear-gradient(to bottom, #45a29e, #66fcf1);
 
 }
+.dBar{
 
+  height: 150px;
+  background: linear-gradient(to bottom, #45a29e, #66fcf1);
+
+}
 .Welcome{
     margin-right: 900px;
     font-size: 120px;
     font-weight: bolder;
+
+}
+.detailsHead{
+  font-weight: bold;
+  font-size: 80px;
 
 }
 ._user{

@@ -50,7 +50,9 @@ componentDidMount() {
 
   db.collection('posts/Computer/posts').get().then(snapshot => {
     const composts = []
+
     snapshot.forEach(doc => {
+     
       const data = doc.data()
       composts.push(data)
     })
