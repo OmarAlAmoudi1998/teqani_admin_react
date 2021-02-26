@@ -12,30 +12,30 @@ import { Button } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import firebase from 'firebase';
-import PopUpDelete from './PopUpDelete';
+import PopUpPostDelete from './PopUpPostDelete';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
-const Customers = () => {
+const Computers = () => {
 
-  const [customers, setCustomers] = useState([]);
+  const [compposts, setCompPosts] = useState([]);
   const [data, setData] = useState('')
   const [loading, setLoading] = useState([]);
 
   // let getCustomersData = async () => {
-  async function getCustomersData() {
+  async function getComputerpostsData() {
     
   
     try {
 
 
 
-      await db.collection('users/Customer/users').onSnapshot(snapshot => {
-        const custom = []
+      await db.collection('posts/Computer/posts').onSnapshot(snapshot => {
+        const temp = []
         snapshot.forEach(doc => {
           const data = doc.data()
-          custom.push(data)
+          temp.push(data)
         })
 
-        setCustomers(custom)
+        setCompPosts(temp)
       })
 
 
@@ -48,63 +48,50 @@ const Customers = () => {
 
   const coulmns = [
     {
-      dataField: "firstName",
-      text: "First name",
+      dataField: "Title",
+      text: "Title",
       sort: true
       
     },
     {
-      dataField: "lastName",
-      text: "Last name",
+      dataField: "Description",
+      text: "Description",
+      
+
+    },
+    {
+      dataField: "DisplayName",
+      text: "Display name",
       sort: true
 
     },
     {
-      dataField: "phoneNumber",
-      text: "Phone number",
-      
-    },
-    {
-      dataField: "address",
-      text: "Address",
-      
-    },
-    {
-      dataField: "city",
-      text: "City",
+      dataField: "Date",
+      text: "Date",
       sort: true
-
-
-    },
-    {
-      dataField: "userType",
-      text: "User type",
-      
     },
 
 
   ]
 
   const defaultSorted = [{
-    dataField: 'name',
+    dataField: 'Date',
     order: 'desc'
   }];
 
   const selectRow = {
     mode: 'radio',
     clickToSelect: true,
-    
     style: { backgroundColor: '#c8e6c9' },
     onSelect: (row, isSelect, rowIndex, e) => {
-      console.log(isSelect)
-      setData(row.phoneNumber)
+      setData(row.Title)
       
     }
   };
 
   useEffect(() => {
 
-    getCustomersData();
+    getComputerpostsData();
 
   }, [])
 
@@ -116,13 +103,13 @@ const Customers = () => {
       <div className="dBar">
         <br></br>
 
-        <h1 className="detailsHead">Customers details</h1>
+        <h1 className="detailsHead">Computer posts</h1>
 
       </div>
 
       <br></br>
 
-      <PopUpDelete
+      <PopUpPostDelete
 
         data={data}
 
@@ -131,8 +118,8 @@ const Customers = () => {
       <div className="container">
         <BootstrapTaple
           bootstrap4
-          keyField="phoneNumber"
-          data={customers}
+          keyField="Title"
+          data={compposts}
           columns={coulmns}
           selectRow={selectRow}
           pagination={paginationFactory()}
@@ -151,4 +138,4 @@ const Customers = () => {
   )
 }
 
-export default Customers;
+export default Computers;

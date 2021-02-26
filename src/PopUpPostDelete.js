@@ -7,18 +7,18 @@ import fire from './config/fire';
 import { db } from "./config/fire";
 
 
-export default function PopUpDelete(props) {
+export default function PopUpPostDelete(props) {
 
 
     const data = props.data;
     async function deleteUser(data) {
         console.log(data)
-        await db.collection("users/Customer/users").where("phoneNumber", '==', data).get().then(function (querySnapshot) {
+        await db.collection("posts/Computer/posts").where("Title", '==', data).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 doc.ref.delete();
             });
             
-        });
+        });   
         
     }
 
@@ -28,13 +28,13 @@ export default function PopUpDelete(props) {
 
         <Popup
             trigger={
-                data ? (<Button variant="danger" > Delete customer</Button>) : (<></>)}
+                data ? (<Button variant="danger" > Delete post</Button>) : (<></>)}
             modal
         >
             {close => (
             <div className="popup">
                 <p className="header">Confirmation</p>
-                <p>Are you sure that you want to delete this account ?</p>
+                <p>Are you sure that you want to delete this post ?</p>
                 <Button variant="danger" onClick={() => {
                     
                     deleteUser(data);

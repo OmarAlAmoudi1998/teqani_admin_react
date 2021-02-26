@@ -8,6 +8,7 @@ import Users from "./Users";
 import Aside from './sidebar.js';
 import Customers from './Customers.js';
 import SignUp from './SignUp.js';
+import Computers from "./Computers";
 function App() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function App() {
               <Route path="/Home" component={Home} />
               <Route path="/Users" component={Users} />
               <Route path="/customers" component={Customers} />
+              <Route path="/Computers" component={Computers} />
               </div>
             </Switch>
           
