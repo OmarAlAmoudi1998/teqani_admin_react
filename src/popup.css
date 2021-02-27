@@ -1,16 +1,16 @@
 .popup{
 
-    width: 100%;
+    width: 1000px;
     height: 100%;
     position: center;
-
+   
 
 }
 
 .popup-content{
 
 width: fit-content;
-background-color: azure;
+background-color: rgb(206, 206, 206);
 position: center;
 }
 
@@ -20,3 +20,36 @@ position: center;
     font-size: 20px;
     color: brown;
 }
+
+.Title{
+    text-align: center;
+    position: center;
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+}
+
+.butt{
+
+    margin-left: 100px;
+
+}
+
+.mainT{
+    text-align: center;
+    font-size: 17px;
+    font-style: italic;
+}
+
+.center{
+    text-align: center;
+    position: center;
+
+}
+
+.aimg{
+    height: 250px;
+    width: 250px;
+    
+}
+

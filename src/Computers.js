@@ -12,12 +12,21 @@ import { Button } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import firebase from 'firebase';
-import PopUpPostDelete from './PopUpPostDelete';
+import PopUpPostComp from './PopUpPostComp';
+import PopUpDisplayComp from './PopUpDisplayComp'
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Computers = () => {
 
   const [compposts, setCompPosts] = useState([]);
-  const [data, setData] = useState('')
+  const [Title, setTitle] = useState('');
+  const [Description, setDescription] = useState('');
+  const [DisplayName, setDisplayName] = useState('');
+  const [Date, setDate] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Catagory, setCatagory] = useState('');
+  const [Location, setLocation] = useState('');
+  const [Phone, setPhone] = useState('');
+  const [Images, setImages] = useState('');
   const [loading, setLoading] = useState([]);
 
   // let getCustomersData = async () => {
@@ -34,7 +43,7 @@ const Computers = () => {
           const data = doc.data()
           temp.push(data)
         })
-
+        console.log(temp)
         setCompPosts(temp)
       })
 
@@ -50,27 +59,60 @@ const Computers = () => {
     {
       dataField: "Title",
       text: "Title",
-      sort: true
-      
+      sort: true,
+      hidden : false,
     },
     {
       dataField: "Description",
       text: "Description",
-      
+      hidden : false,
 
     },
     {
       dataField: "DisplayName",
       text: "Display name",
-      sort: true
+      sort: true,
+      hidden : false,
 
     },
     {
       dataField: "Date",
       text: "Date",
-      sort: true
+      sort: true,
+      hidden : false,
+    },
+    {
+      dataField: "Email",
+      text: "Email",
+      hidden : true,
     },
 
+    {
+      dataField: "Catagory",
+      text: "Catagory",
+      hidden : true,
+    },
+    {
+      dataField: "Location ",
+      text: "Location",
+      hidden : true,
+    },
+    {
+      dataField: "Phone",
+      text: "Phone",
+      hidden : true,
+    },
+    {
+      dataField: "UserID",
+      text: "UserID",
+      hidden : true,
+    },
+    {
+      dataField: "Images",
+      text: "Images",
+      hidden : true,
+    },
+    
 
   ]
 
@@ -84,8 +126,17 @@ const Computers = () => {
     clickToSelect: true,
     style: { backgroundColor: '#c8e6c9' },
     onSelect: (row, isSelect, rowIndex, e) => {
-      setData(row.Title)
-      
+      console.log(row.Images)
+      console.log(row.Location)
+      setTitle(row.Title)
+      setDescription(row.Description)
+      setDisplayName(row.DisplayName)
+      setDate(row.Date)
+      setEmail(row.Email)
+      setCatagory(row.Catagory)
+      setLocation(row.Location )
+      setPhone(row.Phone)
+      setImages(row.Images)
     }
   };
 
@@ -109,11 +160,26 @@ const Computers = () => {
 
       <br></br>
 
-      <PopUpPostDelete
+      <PopUpPostComp
 
-        data={data}
+        Title={Title}
 
       />
+      <PopUpDisplayComp
+      
+      Title={Title}
+      Description={Description}
+      DisplayName={DisplayName}
+      Date={Date}
+      Email={Email}
+      Catagory={Catagory}
+      Location={Location}
+      Phone={Phone}
+      Images={Images}
+
+      />
+<br></br>
+<br></br>
 
       <div className="container">
         <BootstrapTaple
@@ -133,7 +199,13 @@ const Computers = () => {
 
       </div>
 
-
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      
     </div>
   )
 }
