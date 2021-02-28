@@ -14,6 +14,7 @@ import 'reactjs-popup/dist/index.css';
 import firebase from 'firebase';
 import PopUpPostComp from './PopUpPostComp';
 import PopUpDisplayComp from './PopUpDisplayComp'
+import PopUpCompEdit from './PopUpCompEdit'
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Computers = () => {
 
@@ -177,6 +178,12 @@ const Computers = () => {
       Phone={Phone}
       Images={Images}
 
+      />
+      <PopUpCompEdit
+      
+      Title={Title}
+      Description={Description}
+      
       />
 <br></br>
 <br></br>

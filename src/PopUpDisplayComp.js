@@ -26,9 +26,9 @@ export default function PopUpDisplayComp(props) {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                console.log(doc.id)
+                
                 postId = doc.id
-                console.log(postId)
+               
             });
         })
         .catch((error) => {
@@ -50,6 +50,7 @@ export default function PopUpDisplayComp(props) {
                 <div className="popup">
                     <p className="mainT"><strong>Title</strong></p>
                     <p className="Title">{Title}</p>
+                    
                     <hr></hr>
                     <p className="mainT"><strong>Post information</strong></p>
                     <p>Display name : {DisplayName} </p>

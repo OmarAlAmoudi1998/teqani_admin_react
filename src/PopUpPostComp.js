@@ -13,7 +13,7 @@ export default function PopUpPostComp(props) {
     const Title = props.Title;
 
 
-    async function deleteUser(Title) {
+    async function deletePost(Title) {
 
         await db.collection("posts/Computer/posts").where("Title", '==', Title).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
@@ -40,7 +40,7 @@ export default function PopUpPostComp(props) {
                     <p>Are you sure that you want to delete this post ?</p>
                     <Button variant="danger" onClick={() => {
 
-                        deleteUser(Title);
+                        deletePost(Title);
                         close();
 
                     }
