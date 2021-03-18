@@ -116,7 +116,7 @@ export default function Aside() {
                 </svg>
               }
             >
-              Contracts <Link to="/contracts" />
+              Promos <Link to="/promo" />
             </MenuItem>
           </Menu>
           <Menu iconShape="circle"></Menu>

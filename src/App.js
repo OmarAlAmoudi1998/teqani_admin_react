@@ -9,6 +9,7 @@ import Aside from './sidebar.js';
 import Customers from './Customers.js';
 import SignUp from './SignUp.js';
 import Computers from "./Computers";
+import Promo from "./Promo";
 function App() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function App() {
               <Route path="/Users" component={Users} />
               <Route path="/customers" component={Customers} />
               <Route path="/Computers" component={Computers} />
+              <Route path="/promo" component={Promo} />
               </div>
             </Switch>
           

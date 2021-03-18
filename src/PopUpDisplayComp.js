@@ -19,10 +19,10 @@ export default function PopUpDisplayComp(props) {
     const Phone = props.Phone;
     const Images = props.Images;
     let postId = ''
-    
+    const dbDirectory = props.dbDirectory;
     async function tesst(){
 
-        db.collection("posts/Computer/posts").where("Title", "==", Title)
+        db.collection(dbDirectory).where("Title", "==", Title)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {

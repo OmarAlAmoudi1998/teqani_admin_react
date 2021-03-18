@@ -5,9 +5,9 @@ import { Button } from 'react-bootstrap';
 import './popup.css'
 import { db } from "./config/fire";
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 
 export default function PopUpCompEdit(props) {
+
 
 
     const Title = props.Title;
@@ -16,18 +16,8 @@ export default function PopUpCompEdit(props) {
     let postId = ''
     const [newTitle, setNewTitle] = useState("")
     const [newDescription, setNewDescription] = useState("")
+    const dbDirectory = props.dbDirectory;
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-        },
-        textField: {
-            marginLeft: theme.spacing(1),
-            marginRight: theme.spacing(1),
-            width: '25ch',
-        },
-    }));
     const handleChangeTitle = e => {
 
         setNewTitle(e.target.value);
@@ -42,7 +32,7 @@ export default function PopUpCompEdit(props) {
 
     async function getPostId() {
 
-        db.collection("posts/Computer/posts").where("Title", "==", Title)
+        db.collection(dbDirectory).where("Title", "==", Title)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -58,7 +48,7 @@ export default function PopUpCompEdit(props) {
 
     async function EditPost() {
 
-        db.collection("posts/Computer/posts").doc(postId)
+        db.collection(dbDirectory).doc(postId)
             .update({
                 "Title": newTitle,
                 "Description": newDescription
@@ -94,6 +84,7 @@ export default function PopUpCompEdit(props) {
                             variant="outlined"
                             defaultValue={Title}
                             onChange={handleChangeTitle}
+                            
                         />
                         <hr></hr>
                         <p className="mainT"><strong>Description</strong></p>
@@ -102,12 +93,13 @@ export default function PopUpCompEdit(props) {
                             id="outlined-multiline-static"
                             style={{ margin: 2 }}
                             label="Description"
-                            multiline
-                            rows={4}
+                            multiline={true}
+                            rows={10}
                             defaultValue={Description}
                             variant="outlined"
                             onChange={handleChangeDesc}
-                            hieght
+                            fullWidth
+
                         />
                         <hr></hr>
                         <div className="center"><Button variant="info" onClick={() => { EditPost(); }}>Save</Button></div>

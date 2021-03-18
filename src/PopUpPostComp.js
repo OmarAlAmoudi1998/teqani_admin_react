@@ -11,11 +11,11 @@ export default function PopUpPostComp(props) {
 
 
     const Title = props.Title;
-
+    const dbDirectory = props.dbDirectory;
 
     async function deletePost(Title) {
 
-        await db.collection("posts/Computer/posts").where("Title", '==', Title).get().then(function (querySnapshot) {
+        await db.collection(dbDirectory).where("Title", '==', Title).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
 
                 doc.ref.delete();

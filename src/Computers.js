@@ -5,7 +5,6 @@ import { db } from "./config/fire";
 import BootstrapTaple from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import BootstrapTable from 'react-bootstrap-table-next';
 import './Customers.css'
 import './Home.css';
 import { Button } from 'react-bootstrap';
@@ -28,8 +27,7 @@ const Computers = () => {
   const [Location, setLocation] = useState('');
   const [Phone, setPhone] = useState('');
   const [Images, setImages] = useState('');
-  const [loading, setLoading] = useState([]);
-
+  const dbDirectory = "posts/Computer/posts"
   // let getCustomersData = async () => {
   async function getComputerpostsData() {
     
@@ -38,7 +36,7 @@ const Computers = () => {
 
 
 
-      await db.collection('posts/Computer/posts').onSnapshot(snapshot => {
+      await db.collection(dbDirectory).onSnapshot(snapshot => {
         const temp = []
         snapshot.forEach(doc => {
           const data = doc.data()
@@ -164,7 +162,7 @@ const Computers = () => {
       <PopUpPostComp
 
         Title={Title}
-
+        dbDirectory={dbDirectory}
       />
       <PopUpDisplayComp
       
@@ -177,13 +175,13 @@ const Computers = () => {
       Location={Location}
       Phone={Phone}
       Images={Images}
-
+      dbDirectory={dbDirectory}
       />
       <PopUpCompEdit
       
       Title={Title}
       Description={Description}
-      
+      dbDirectory={dbDirectory}
       />
 <br></br>
 <br></br>
