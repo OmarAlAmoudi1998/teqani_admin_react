@@ -7,15 +7,15 @@ import fire from './config/fire';
 import { db } from "./config/fire";
 
 
-export default function PopUpPostComp(props) {
+export default function PopUpPromoDelete(props) {
 
 
-    const Title = props.Title;
+    const promo = props.promo;
     const dbDirectory = props.dbDirectory;
-    const postID = props.postID;
-    async function deletePost(postID) {
 
-        await db.collection(dbDirectory).where("postID", '==', postID).get().then(function (querySnapshot) {
+    async function deletePromo(promo) {
+
+        await db.collection(dbDirectory).where("promo", '==', promo).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
 
                 doc.ref.delete();
@@ -31,16 +31,16 @@ export default function PopUpPostComp(props) {
 
         <Popup
             trigger={
-                Title ? (<Button variant="danger" > Delete post</Button>) : (<></>)}
+                promo ? (<Button variant="danger" >Delete promo</Button>) : (<></>)}
             modal
         >
             {close => (
                 <div className="popup">
                     <p className="header">Confirmation</p>
-                    <p>Are you sure that you want to delete this post ?</p>
+                    <p>Are you sure that you want to delete this promo ?</p>
                     <Button variant="danger" onClick={() => {
 
-                        deletePost(postID);
+                        deletePromo(promo);
                         close();
 
                     }

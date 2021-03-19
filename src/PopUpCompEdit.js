@@ -13,6 +13,7 @@ export default function PopUpCompEdit(props) {
     const Title = props.Title;
     const Description = props.Description;
     const Images = props.Images;
+    const postID = props.postID;
     let postId = ''
     const [newTitle, setNewTitle] = useState("")
     const [newDescription, setNewDescription] = useState("")
@@ -30,30 +31,42 @@ export default function PopUpCompEdit(props) {
 
     }
 
-    async function getPostId() {
+    // async function getPostId() {
 
-        db.collection(dbDirectory).where("Title", "==", Title)
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    postId = doc.id
+    //     db.collection(dbDirectory).where("postID", "==", postID)
+    //         .get()
+    //         .then((querySnapshot) => {
+    //             querySnapshot.forEach((doc) => {
+    //                 postId = doc.id
 
-                });
-            })
-            .catch((error) => {
-                console.log("Error getting documents: ", error);
-            });
+    //             });
+    //         })
+    //         .catch((error) => {
+    //             console.log("Error getting documents: ", error);
+    //         });
 
-    }
+    // }
 
     async function EditPost() {
-
-        db.collection(dbDirectory).doc(postId)
+        if (newTitle != "" && newDescription!=""){
+        db.collection(dbDirectory).doc(postID)
             .update({
                 "Title": newTitle,
                 "Description": newDescription
             })
-
+        } else if(newTitle !="" && newDescription == "") {
+            db.collection(dbDirectory).doc(postID)
+            .update({
+                "Title": newTitle,
+                "Description": Description
+            })
+        } else if (newTitle==""&&newDescription!=""){
+            db.collection(dbDirectory).doc(postID)
+            .update({
+                "Title": Title,
+                "Description": newDescription
+            })
+        }
     }
 
     return (
@@ -61,7 +74,7 @@ export default function PopUpCompEdit(props) {
         <Popup
 
             trigger={
-                Title ? (<Button variant="info" className="butt" onClick={getPostId()}> Edit post</Button>) : (<></>)}
+                Title ? (<Button variant="info" className="butt"> Edit post</Button>) : (<></>)}
             modal
         >
 
@@ -102,7 +115,10 @@ export default function PopUpCompEdit(props) {
 
                         />
                         <hr></hr>
-                        <div className="center"><Button variant="info" onClick={() => { EditPost(); }}>Save</Button></div>
+                        <div className="center"><Button variant="info" onClick={() => { 
+                            EditPost(); 
+                            close();
+                            }}>Save</Button></div>
                     </form>
                 </div>
             )}

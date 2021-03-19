@@ -27,6 +27,7 @@ const Computers = () => {
   const [Location, setLocation] = useState('');
   const [Phone, setPhone] = useState('');
   const [Images, setImages] = useState('');
+  const [pID, setPID] = useState('');
   const dbDirectory = "posts/Computer/posts"
   // let getCustomersData = async () => {
   async function getComputerpostsData() {
@@ -71,7 +72,7 @@ const Computers = () => {
       dataField: "DisplayName",
       text: "Display name",
       sort: true,
-      hidden : false,
+      hidden : true,
 
     },
     {
@@ -111,7 +112,11 @@ const Computers = () => {
       text: "Images",
       hidden : true,
     },
-    
+    {
+      dataField: "postID",
+      text: "Post ID",
+      hidden : true,
+    },
 
   ]
 
@@ -136,6 +141,8 @@ const Computers = () => {
       setLocation(row.Location )
       setPhone(row.Phone)
       setImages(row.Images)
+      setPID(row.postID)
+      console.log(row.postID)
     }
   };
 
@@ -163,6 +170,7 @@ const Computers = () => {
 
         Title={Title}
         dbDirectory={dbDirectory}
+        postID={pID}
       />
       <PopUpDisplayComp
       
@@ -182,14 +190,15 @@ const Computers = () => {
       Title={Title}
       Description={Description}
       dbDirectory={dbDirectory}
+      postID={pID}
       />
 <br></br>
 <br></br>
 
-      <div className="container">
+<div className="container" style={{width: "fit-content" ,height:"fit-content"}}>
         <BootstrapTaple
           bootstrap4
-          keyField="Title"
+          keyField="postID"
           data={compposts}
           columns={coulmns}
           selectRow={selectRow}

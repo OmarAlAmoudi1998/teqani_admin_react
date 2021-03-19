@@ -16,7 +16,7 @@
 
 .HomeDesign{
         width: 100%;
-        height: fit-content;
+        height: 100vh;
         background: linear-gradient(to right, #0b0c10, #1f2833);
         position: relative;
 }
