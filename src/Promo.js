@@ -18,7 +18,12 @@ const Promo = () => {
     const [discount, setDiscount] = useState('');
     const [validDate, setValidDate] = useState('');
     const [promos, setPromos] = useState([]);
+    let [show, setShow] = useState(false)
+    const handleShow = () => {
 
+      setShow(!show)
+  
+    }
     async function getPromoData() {
     
   
@@ -77,8 +82,8 @@ const Promo = () => {
           setPromo(row.promo)
           setDiscount(row.discount)
           setValidDate(row.validDate)
-          console.log(isSelect)
           
+          setShow(true)
           
         }
       };
@@ -109,13 +114,18 @@ const Promo = () => {
     <br></br>
     
           <div className="container" style={{width: "fit-content" ,height:"fit-content"}}>
-        <PopUpAddPromo
+          <PopUpAddPromo
         dbDirectory={dbDirectory}
         />
+            {show ? (<div>
+
+              
         
         <PopUpPromoDelete
         dbDirectory={dbDirectory}
         promo={promo}
+        show={show}
+        handleShow={handleShow}
         />
         <PopUpEditPromo
         dbDirectory={dbDirectory}
@@ -123,6 +133,9 @@ const Promo = () => {
         validDate = {validDate}
         discount = {discount}
         />
+
+            </div>):(<></>)}
+       
             <BootstrapTaple
               bootstrap4
               keyField="promo"

@@ -14,6 +14,7 @@ import firebase from 'firebase';
 import PopUpPostComp from './PopUpPostComp';
 import PopUpDisplayComp from './PopUpDisplayComp'
 import PopUpCompEdit from './PopUpCompEdit'
+import PopUpViewPostOffers from './PopUpViewPostOffers'
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Computers = () => {
 
@@ -28,11 +29,18 @@ const Computers = () => {
   const [Phone, setPhone] = useState('');
   const [Images, setImages] = useState('');
   const [pID, setPID] = useState('');
+  let [show, setShow] = useState(false)
   const dbDirectory = "posts/Computer/posts"
   // let getCustomersData = async () => {
+
+  const handleShow = () => {
+
+    setShow(!show)
+
+  }
   async function getComputerpostsData() {
-    
-  
+
+
     try {
 
 
@@ -59,63 +67,64 @@ const Computers = () => {
     {
       dataField: "Title",
       text: "Title",
-      sort: true,
-      hidden : false,
+      // sort: true,
+      filter: textFilter(),
+      hidden: false,
     },
     {
       dataField: "Description",
       text: "Description",
-      hidden : false,
+      hidden: false,
 
     },
     {
       dataField: "DisplayName",
       text: "Display name",
       sort: true,
-      hidden : true,
+      hidden: true,
 
     },
     {
       dataField: "Date",
       text: "Date",
       sort: true,
-      hidden : false,
+      hidden: false,
     },
     {
       dataField: "Email",
       text: "Email",
-      hidden : true,
+      hidden: true,
     },
 
     {
       dataField: "Catagory",
       text: "Catagory",
-      hidden : true,
+      hidden: true,
     },
     {
       dataField: "Location ",
       text: "Location",
-      hidden : true,
+      hidden: true,
     },
     {
       dataField: "Phone",
       text: "Phone",
-      hidden : true,
+      hidden: true,
     },
     {
       dataField: "UserID",
       text: "UserID",
-      hidden : true,
+      hidden: true,
     },
     {
       dataField: "Images",
       text: "Images",
-      hidden : true,
+      hidden: true,
     },
     {
       dataField: "postID",
       text: "Post ID",
-      hidden : true,
+      hidden: true,
     },
 
   ]
@@ -138,10 +147,12 @@ const Computers = () => {
       setDate(row.Date)
       setEmail(row.Email)
       setCatagory(row.Catagory)
-      setLocation(row.Location )
+      setLocation(row.Location)
       setPhone(row.Phone)
       setImages(row.Images)
       setPID(row.postID)
+      setShow(true)
+
       console.log(row.postID)
     }
   };
@@ -165,47 +176,62 @@ const Computers = () => {
       </div>
 
       <br></br>
-
-      <PopUpPostComp
+      {show ? (<div><PopUpPostComp
 
         Title={Title}
         dbDirectory={dbDirectory}
         postID={pID}
+        handleShow={handleShow}
+        show={show}
       />
-      <PopUpDisplayComp
       
-      Title={Title}
-      Description={Description}
-      DisplayName={DisplayName}
-      Date={Date}
-      Email={Email}
-      Catagory={Catagory}
-      Location={Location}
-      Phone={Phone}
-      Images={Images}
-      dbDirectory={dbDirectory}
+      <PopUpDisplayComp
+
+        Title={Title}
+        Description={Description}
+        DisplayName={DisplayName}
+        Date={Date}
+        Email={Email}
+        Catagory={Catagory}
+        Location={Location}
+        Phone={Phone}
+        Images={Images}
+        dbDirectory={dbDirectory}
+        postID={pID}
       />
       <PopUpCompEdit
-      
-      Title={Title}
-      Description={Description}
-      dbDirectory={dbDirectory}
-      postID={pID}
-      />
-<br></br>
-<br></br>
 
-<div className="container" style={{width: "fit-content" ,height:"fit-content"}}>
+        Title={Title}
+        Description={Description}
+        dbDirectory={dbDirectory}
+        postID={pID}
+      />
+
+      <PopUpViewPostOffers
+      
+      postID={pID}
+
+      />
+      </div>
+      ) : (<></>)}
+
+      
+      <br></br>
+      <br></br>
+
+      <div className="container" style={{ width: "fit-content", height: "fit-content" }}>
         <BootstrapTaple
           bootstrap4
           keyField="postID"
           data={compposts}
           columns={coulmns}
           selectRow={selectRow}
+
           pagination={paginationFactory()}
-          defaultSorted={ defaultSorted }
+          defaultSorted={defaultSorted}
+          filter={filterFactory()}
           condensed
-          
+
         />
 
 
@@ -219,7 +245,7 @@ const Computers = () => {
       <br></br>
       <br></br>
       <br></br>
-      
+
     </div>
   )
 }

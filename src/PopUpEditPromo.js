@@ -21,7 +21,7 @@ export default function PopUpEditPromo(props) {
     const dbDirectory = props.dbDirectory;
 
     const handleChangePromo = e => {
-
+        
         setNewPromo(e.target.value);
         console.log(e.target.value)
     }

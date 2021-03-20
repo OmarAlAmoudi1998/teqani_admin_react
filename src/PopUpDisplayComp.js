@@ -8,7 +8,7 @@ import { db } from "./config/fire";
 
 export default function PopUpDisplayComp(props) {
 
-
+    const postID = props.postID
     const Title = props.Title;
     const Description = props.Description;
     const DisplayName = props.DisplayName;
@@ -20,28 +20,13 @@ export default function PopUpDisplayComp(props) {
     const Images = props.Images;
     let postId = ''
     const dbDirectory = props.dbDirectory;
-    async function tesst(){
-
-        db.collection(dbDirectory).where("Title", "==", Title)
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                
-                postId = doc.id
-               
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-
-    }
+    
 
     return (
 
         <Popup
             trigger={
-                Title ? (<Button variant="info" className="butt" onClick={tesst()}> Display post</Button>) : (<></>)}
+                postID ? (<Button variant="info" className="butt" > Display post</Button>) : (<></>)}
             modal
         >
             

@@ -12,7 +12,8 @@ export default function PopUpPromoDelete(props) {
 
     const promo = props.promo;
     const dbDirectory = props.dbDirectory;
-
+    let [show,setShow] = useState(props.show)
+    const handleShow = props.handleShow
     async function deletePromo(promo) {
 
         await db.collection(dbDirectory).where("promo", '==', promo).get().then(function (querySnapshot) {
@@ -41,6 +42,7 @@ export default function PopUpPromoDelete(props) {
                     <Button variant="danger" onClick={() => {
 
                         deletePromo(promo);
+                        handleShow()
                         close();
 
                     }

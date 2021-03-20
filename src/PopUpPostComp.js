@@ -9,10 +9,14 @@ import { db } from "./config/fire";
 
 export default function PopUpPostComp(props) {
 
-
-    const Title = props.Title;
+    let Title = props.Title;
     const dbDirectory = props.dbDirectory;
     const postID = props.postID;
+    let [show,setShow] = useState(props.show)
+    const handleShow = props.handleShow
+    
+
+ 
     async function deletePost(postID) {
 
         await db.collection(dbDirectory).where("postID", '==', postID).get().then(function (querySnapshot) {
@@ -23,6 +27,8 @@ export default function PopUpPostComp(props) {
 
         });
 
+        
+
     }
 
 
@@ -31,7 +37,7 @@ export default function PopUpPostComp(props) {
 
         <Popup
             trigger={
-                Title ? (<Button variant="danger" > Delete post</Button>) : (<></>)}
+                show ? (<Button variant="danger" > Delete post</Button>) : (<></>)}
             modal
         >
             {close => (
@@ -41,6 +47,7 @@ export default function PopUpPostComp(props) {
                     <Button variant="danger" onClick={() => {
 
                         deletePost(postID);
+                        handleShow()
                         close();
 
                     }
