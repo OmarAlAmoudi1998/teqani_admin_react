@@ -19,6 +19,8 @@ import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Computers = () => {
 
   const [compposts, setCompPosts] = useState([]);
+  const [offers, setOffers] = useState([]);
+
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
   const [DisplayName, setDisplayName] = useState('');
@@ -38,6 +40,29 @@ const Computers = () => {
     setShow(!show)
 
   }
+
+
+  async function getOffersData() {
+
+    try {
+        await db.collection("offers").where("postID", '==', ""+pID).onSnapshot(snapshot => {
+            const temp = []
+            snapshot.forEach(doc => {
+                const data = doc.data()
+                temp.push(data)
+            })
+            setOffers(temp)
+            console.log(offers)
+            
+            
+        })
+
+    } catch (e) {
+        console.log('Failed to get data')
+    }
+
+}
+
   async function getComputerpostsData() {
 
 
@@ -152,15 +177,15 @@ const Computers = () => {
       setImages(row.Images)
       setPID(row.postID)
       setShow(true)
-
-      console.log(row.postID)
+      getOffersData()
+      console.log(pID)
     }
   };
 
   useEffect(() => {
 
     getComputerpostsData();
-
+    getOffersData();
   }, [])
 
   return (
@@ -210,7 +235,7 @@ const Computers = () => {
       <PopUpViewPostOffers
       
       postID={pID}
-
+      offers = {offers}
       />
       </div>
       ) : (<></>)}

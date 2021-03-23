@@ -15,7 +15,9 @@ export default function PopUpDisplayUser(props) {
    const uid = props.uid
    const addressMap = props.addressMap
    const userType = props.userType
-
+   const Categories = props.Categories
+   const avgRating = props.avgRating
+   const profilePicture = props.profilePicture
     return (
 
         <Popup
@@ -27,15 +29,26 @@ export default function PopUpDisplayUser(props) {
             {close => (
                 
                 <div className="popup">
-                    <p className="mainT"><strong>Information</strong></p>
-                    <hr></hr>
-                    <p>First name : {firstName} </p>
-                    <p>Last name : {lastName} </p>
-                    <p>Email : {email}</p>
-                    <p>Phone number : {phoneNumber}</p>
+                    
+                    {profilePicture ? (<img className="avatar" src={profilePicture}></img>) : ("")}
+                    <p><strong>First name :</strong> {firstName} </p>
+                    <p><strong>Last name :</strong> {lastName} </p>
+                    <p><strong>Email : </strong>{email}</p>
+                    <p><strong>Phone number : </strong>{phoneNumber}</p>
+                    {avgRating?(<div>
+                        <hr></hr>
+                        <p className="mainT"><strong>Freelancing information</strong></p>
+                        <hr></hr>
+                        <p><strong>Average rating : </strong>{avgRating}</p>
+                        <p><strong>Categories :</strong> </p>
+                        <p>- {Categories[0]}</p>
+                        <p>- {Categories[1]}</p>
+                        <p>- {Categories[2]}</p>
+                        </div>):("")}
+                    
                     <hr></hr>
                     <p className="mainT"><strong>Address</strong></p>
-                    <hr></hr>
+                    
                     <p>City : {addressMap.city}</p>
                     <p>District : {addressMap.district}</p>
                     <p>Street : {addressMap.street}</p>

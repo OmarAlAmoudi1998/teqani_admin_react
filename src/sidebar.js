@@ -76,7 +76,8 @@ export default function Aside() {
             >
               <MenuItem>Customers
             <Link to="/Customers" /></MenuItem>
-              
+            <MenuItem>Freelancers
+            <Link to="/freelancers" /></MenuItem>
             </SubMenu>
               
             <SubMenu title="Posts"

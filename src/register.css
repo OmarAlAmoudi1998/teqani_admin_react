@@ -1,0 +1,38 @@
+.mainContainer{
+
+    height: 400px;
+    width: 600px;
+    background-color: azure;
+    margin-top: 150px;
+    margin-left: 530px;
+    border-radius: 20px;
+}
+
+.textfield{
+
+    margin-right: 120px;
+    margin-left: 30px;
+    width: 60ch;
+}
+
+.pPos{
+
+        font-size: large;
+        padding-top: 10px;
+        margin-right: 450px;
+    
+}
+
+.pPos2{
+
+    font-size: large;
+    padding-top: 10px;
+    margin-right: 480px;
+
+}
+
+.registerButton{
+
+    margin-top: 20px;
+
+}

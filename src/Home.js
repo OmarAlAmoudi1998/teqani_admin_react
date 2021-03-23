@@ -1,5 +1,5 @@
 import './App.css';
-import fire from "./config/fire";
+import fire, { auth } from "./config/fire";
 import { db } from "./config/fire";
 import React, { Component } from 'react';
 import firebase from "firebase/app";
@@ -57,7 +57,7 @@ componentDidMount() {
       composts.push(data)
     })
     this.setState({ composts: composts })
-
+    
   }).catch(error => console.log(error))
 
 }
@@ -66,6 +66,7 @@ componentDidMount() {
 getFullName ()  {
   console.log('fun started')
   console.log(fire.auth.currentUser)
+  
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
 

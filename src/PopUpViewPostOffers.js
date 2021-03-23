@@ -8,28 +8,23 @@ import { db } from "./config/fire";
 import BootstrapTaple from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
+import PopUpOfferDelete from "./PopUpOfferDelete"
 export default function PopUpViewPostOffers(props) {
-    const postID = props.postID
-    const [offers, setOffers] = useState([]);
-    const dbDirectory1 = "offers"
-    async function getOffersData() {
+    const [postID,setPostID] = useState(props.postID);
+    
+    const dbDirectory = "offers"
+    let [show, setShow] = useState(false)
+    const offers = props.offers
+    const [offerID, setOfferID] = useState("")
+    const [Updated,setUpdated] = useState(false)
+    const handleShow = () => {
 
-        try {
-            await db.collection(dbDirectory1).where("postID", '==', postID).onSnapshot(snapshot => {
-                const temp = []
-                snapshot.forEach(doc => {
-                    const data = doc.data()
-                    temp.push(data)
-                })
-                setOffers(temp)
-                console.log(offers)
-            })
-
-        } catch (e) {
-            console.log('Failed to get data')
-        }
+        setShow(!show)
 
     }
+    
+
+ 
 
     const coulmns = [
         {
@@ -59,6 +54,13 @@ export default function PopUpViewPostOffers(props) {
         {
             dataField: "postID",
             text: "Post ID",
+            filter: textFilter(),
+            hidden: true
+
+        },
+        {
+            dataField: "offerID",
+            text: "Offer ID",
             filter: textFilter(),
             hidden: true
 
@@ -122,26 +124,39 @@ export default function PopUpViewPostOffers(props) {
 
         style: { backgroundColor: '#c8e6c9' },
         onSelect: (row, isSelect, rowIndex, e) => {
-
-
+            setOfferID(row.offerID)
+            setShow(true)
+            console.log(row.offerID)
+            console.log(offerID)
         }
     };
 
-    useEffect(() => {
+    
 
-        getOffersData();
+    // useEffect(() => {
+    //     getOffersData();
 
-    }, [])
+    // }, [])
 
 
     return (
 
         <Popup
+        closeOnDocumentClick={false}
             trigger={
                 postID ? (<Button variant="danger" >View offers</Button>) : (<></>)}
             modal
         >
             {close => (
+
+                <div>
+                    
+                    {show ? (<PopUpOfferDelete
+                    offerID = {offerID}
+                    dbDirectory = {dbDirectory}
+                    show={show}
+                    handleShow={handleShow}
+                    />) : (<></>)}
                 <div className="popup">
                     <BootstrapTaple
                         bootstrap4
@@ -155,12 +170,13 @@ export default function PopUpViewPostOffers(props) {
                         condensed
 
                     />
-                    <Button variant="danger" onClick={() => {
+                    <Button className="ml-3"variant="danger" onClick={() => {
                         console.log(offers)
                         close();
 
                     }
                     }>Confirm</Button>
+                </div>
                 </div>
             )}
         </Popup>

@@ -13,7 +13,14 @@ width: fit-content;
 background-color: rgb(206, 206, 206);
 position: center;
 }
+.avatar{
 
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    margin-left: 37%;
+
+}
 .header{
     text-align: center;
     position: center;

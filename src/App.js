@@ -10,6 +10,8 @@ import Customers from './Customers.js';
 import SignUp from './SignUp.js';
 import Computers from "./Computers";
 import Promo from "./Promo";
+import Freelancer from"./Freelancer";
+import RegisterAdmin from "./RegisterAdmin"
 function App() {
   return (
     <Router>
@@ -27,7 +29,9 @@ function App() {
               <Route path="/Home" component={Home} />
               <Route path="/Users" component={Users} />
               <Route path="/customers" component={Customers} />
+              <Route path="/freelancers" component={Freelancer} />
               <Route path="/Computers" component={Computers} />
+              <Route path="/RegisterAdmin" component={RegisterAdmin}/>
               <Route path="/promo" component={Promo} />
               </div>
             </Switch>
