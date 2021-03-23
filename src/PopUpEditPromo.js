@@ -121,7 +121,7 @@ export default function PopUpEditPromo(props) {
 
         <Popup
             trigger={
-                <Button variant="info" onClick={getPromoId()} >Edit promo</Button>}
+                <Button className="butt2" variant="info" onClick={getPromoId()} >Edit promo</Button>}
             modal
         >
             {close => (

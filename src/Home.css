@@ -16,9 +16,9 @@
 
 .HomeDesign{
         width: 100%;
-        height: 100vh;
+        height: 1080px;
         background: linear-gradient(to right, #0b0c10, #1f2833);
-        position: relative;
+        position: static;
 }
 
 .fBar{
@@ -34,8 +34,8 @@
 
 }
 .Welcome{
-    margin-right: 900px;
-    font-size: 120px;
+    margin-top: 50px;
+    font-size: 90px;
     font-weight: bolder;
 
 }
@@ -50,6 +50,26 @@
     font-size: 60px;
     font-weight: bold;
 
+}
+
+.card{
+  padding-top: 80px;
+  height : 300px;
+  width: 300px;
+  border-radius: 20px;
+  background: linear-gradient(to bottom, #eef2f3, #8e9eab);
+
+}
+.row {
+ 
+  margin : 0px;
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+  margin-left: 300px;
+  margin-top: 100px;
 }
 
 .root {

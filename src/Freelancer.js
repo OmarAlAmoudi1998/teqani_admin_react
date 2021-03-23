@@ -13,6 +13,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import firebase from 'firebase';
 import PopUpDisplayUser from './PopUpDisplayUser';
+import PopUpFreelancerChoice from './PopUpFreelancerChoice'
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Freelancer = () => {
 
@@ -22,16 +23,25 @@ const Freelancer = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [email, setEmail] = useState('')
   const [uid, setUid] = useState('')
-  const [Categories,setCategories] = useState('')
-  const [avgRating,setAvgRating] = useState('')
+  const [Categories, setCategories] = useState('')
+  const [avgRating, setAvgRating] = useState('')
   const [userType, setUserType] = useState('')
   const [addressMap, setAddressMap] = useState('')
-  const [profilePicture,setProfilePicture] = useState('')
+  const [profilePicture, setProfilePicture] = useState('')
+  const [AccountDetails, setAccountDetails] = useState('')
+  const [ValidationUnderProgress, setValidationUnderProgress] = useState('')
+  let [show, setShow] = useState(false)
+  const handleShow = () => {
+
+    setShow(!show)
+
+  }
   const dbDirectory = "users/Freelancer/users"
 
+
   async function getFreelancersData() {
-    
-  
+
+
     try {
 
 
@@ -54,48 +64,54 @@ const Freelancer = () => {
 
   }
 
+  function getHowManyFreelancerInCity(array, value) {
+    var count = 0;
+    array.forEach((v) => (v === value && count++));
+    return count;
+}
+
   const coulmns = [
     {
       dataField: "firstName",
       text: "First name",
       sort: true,
-      hidden : false,
+      hidden: false,
       filter: textFilter(),
-      
+
     },
     {
       dataField: "lastName",
       text: "Last name",
       sort: true,
       filter: textFilter(),
-      hidden : false
+      hidden: false
 
     },
     {
       dataField: "phoneNumber",
       text: "Phone number",
       filter: textFilter(),
-      hidden : false
+      hidden: false
 
     },
     {
       dataField: "addressMap.city",
       text: "City",
-      hidden : false,
+      hidden: false,
       filter: textFilter(),
-      
+
     },
     {
       dataField: "addressMap.district",
       text: "District",
-      hidden : true
+      hidden: true
 
-      
+
     },
     {
       dataField: "addressMap.street",
       text: "Street",
-      hidden : true
+      hidden: true
 
     },
     {
@@ -106,38 +122,44 @@ const Freelancer = () => {
 
     },
     {
-        dataField: "avgRating",
-        text: "Average rating",
-        sort: true,
-        hidden: false,
-        
-  
-      },
+      dataField: "avgRating",
+      text: "Average rating",
+      sort: true,
+      hidden: false,
+
+
+    },
     {
       dataField: "userType",
       text: "User type",
-      hidden : true
+      hidden: true
     },
     {
       dataField: "uid",
       text: "User ID",
-      hidden : true
+      hidden: true
     },
     {
       dataField: "addressMap",
       text: "Address Map",
-      hidden : true
+      hidden: true
     },
     {
-        dataField: "Categories",
-        text: "Categories",
-        hidden : true
-      },
-      {
-        dataField: "profilePicture",
-        text: "ProfilePicture",
-        hidden : true
-      },
+      dataField: "Categories",
+      text: "Categories",
+      hidden: true
+    },
+    {
+      dataField: "profilePicture",
+      text: "ProfilePicture",
+      hidden: true
+    },
+    {
+      dataField: "AccountDetails",
+      text: "Account details",
+      hidden: true
+    },
+
   ]
 
   const defaultSorted = [{
@@ -148,10 +170,10 @@ const Freelancer = () => {
   const selectRow = {
     mode: 'radio',
     clickToSelect: true,
-    
+
     style: { backgroundColor: '#c8e6c9' },
     onSelect: (row, isSelect, rowIndex, e) => {
-      
+
       setFirstName(row.firstName)
       setLastName(row.lastName)
       setEmail(row.email)
@@ -162,7 +184,10 @@ const Freelancer = () => {
       setCategories(row.Categories)
       setAvgRating(row.avgRating)
       setProfilePicture(row.profilePicture)
-      console.log(addressMap)
+      setAccountDetails(row.AccountDetails)
+      setValidationUnderProgress(row.AccountDetails.ValidationUnderProgress)
+      setShow(true)
+      console.log(ValidationUnderProgress)
     }
   };
 
@@ -181,6 +206,7 @@ const Freelancer = () => {
         <br></br>
 
         <h1 className="detailsHead">Freelancers details</h1>
+        <p>{getHowManyFreelancerInCity(freelancers,'email')}</p>
 
       </div>
 
@@ -191,19 +217,38 @@ const Freelancer = () => {
         data={data}
 
       /> */}
-<PopUpDisplayUser
+      <PopUpDisplayUser
 
-firstName = {firstName}
-lastName = {lastName}
-phoneNumber = {phoneNumber}
-email = {email}
-addressMap = {addressMap}
-userType = {userType}
-uid = {uid}
-Categories = {Categories}
-avgRating = {avgRating}
-profilePicture = {profilePicture}
-/>
+        firstName={firstName}
+        lastName={lastName}
+        phoneNumber={phoneNumber}
+        email={email}
+        addressMap={addressMap}
+        userType={userType}
+        uid={uid}
+        Categories={Categories}
+        avgRating={avgRating}
+        profilePicture={profilePicture}
+        show={show}
+        handleShow={handleShow}
+      />
+
+      {show ? (<div>
+
+        {ValidationUnderProgress ? (<PopUpFreelancerChoice
+
+          AccountDetails={AccountDetails}
+          dbDirectory={dbDirectory}
+          ValidationUnderProgress={ValidationUnderProgress}
+          uid={uid}
+          show={show}
+          handleShow={handleShow}
+        />) : (<></>)
+
+        }
+
+      </div>) : (<></>)}
+
       <div className="container">
         <BootstrapTaple
           bootstrap4
@@ -212,10 +257,10 @@ profilePicture = {profilePicture}
           columns={coulmns}
           selectRow={selectRow}
           pagination={paginationFactory()}
-          defaultSorted={ defaultSorted }
-          filter={ filterFactory() }
+          defaultSorted={defaultSorted}
+          filter={filterFactory()}
           condensed
-          
+
         />
 
 

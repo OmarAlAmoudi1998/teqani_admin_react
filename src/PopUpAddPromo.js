@@ -78,7 +78,7 @@ export default function PopUpAddPromo(props) {
 
         <Popup
             trigger={
-                <Button variant="info" >Add promo</Button>}
+                <Button className="butt" variant="info" >Add promo</Button>}
             modal
         >
             {close => (

@@ -1,7 +1,7 @@
 import './App.css';
 import fire, { auth } from "./config/fire";
 import { db } from "./config/fire";
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
 import Users from './Users';
@@ -17,133 +17,91 @@ import Typography from '@material-ui/core/Typography';
 
 
 
-class Home extends Component {
-  
+export default function Home() {
 
 
-  constructor() {
-    super();
-    this.state = {
-      composts: null,
-      user: null,
+
+
+  const [customersData, setCustomersData] = useState([])
+  const dbDirectoryCustomers = "users/Customer/users"
+  const [freelancersData, setFreelancersData] = useState([])
+  const dbDirectoryFreelancers = "users/Freelancer/users"
+  let CustomersNumber = customersData.length;
+  let FreelancersNumber = freelancersData.length;
+
+  function getHowManyCustomer() {
+    try {
+      db.collection(dbDirectoryCustomers).onSnapshot(snapshot => {
+        const temp = []
+        snapshot.forEach(doc => {
+          const data = doc.data()
+          temp.push(data)
+        })
+        setCustomersData(temp)
+      })
+    } catch (e) {
+      console.log('Failed to get data')
     }
+  }
 
-    this.getFullName = this.getFullName.bind(this);
-
+  function getHowManyFreelancers() {
+    try {
+      db.collection(dbDirectoryFreelancers).onSnapshot(snapshot => {
+        const temp = []
+        snapshot.forEach(doc => {
+          const data = doc.data()
+          temp.push(data)
+        })
+        setFreelancersData(temp)
+      })
+    } catch (e) {
+      console.log('Failed to get data')
+    }
   }
 
 
 
-componentDidMount() {
-
-  console.log('mounted')
-  this.getFullName()
-  // firebase.auth().onAuthStateChanged((user) => {
-  //   if (user) {
 
 
+  useEffect(() => {
+    getHowManyCustomer();
+    getHowManyFreelancers();
 
-  //   }
-  // });
+  }, [])
 
-
-
-  db.collection('posts/Computer/posts').get().then(snapshot => {
-    const composts = []
-
-    snapshot.forEach(doc => {
-     
-      const data = doc.data()
-      composts.push(data)
-    })
-    this.setState({ composts: composts })
-    
-  }).catch(error => console.log(error))
-
-}
-
-
-getFullName ()  {
-  console.log('fun started')
-  console.log(fire.auth.currentUser)
-  
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-
-      
-        var temp;
-          db
-          .collection("/users/Admin/users/")
-          .doc(user.uid+"")
-          .get()
-          .then((doc) => {
-            const data = doc.data();
-            temp = data.name;
-            console.log(temp)
-            this.setState({user : temp})
-          
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-          
-      
-
-    }
-  });
-
-
-}
-
-
-render() {
-
-  
 
   return (
 
-    
+
     <div className='HomeDesign' >
       <div className='fBar'>
         <br></br>
-        <h1 className='Welcome'>Welcome,</h1>
-        <h1 className='_user'>{this.state.user}</h1>
+        <h1 className='Welcome'>Welcome to TeQani adminstration</h1>
+
       </div>
-
-
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      <h1>OMAR </h1>
-      {
-        this.state.composts && this.state.composts.map(compost => {
-          return (
-            <>
-              <p>{compost.Date}</p>
-            </>
-          )
-        })
-
-      }
+      <div className="row">
+        <div className="column">
+          <div className="card">
+            <h2>We currently have :</h2>
+            <h1>{CustomersNumber} </h1>
+            <h2>Customers</h2>
+          </div>
+        </div>
+        <div className="column">
+        <div className="card">
+          <h2>We currently have :</h2>
+          <h1>{FreelancersNumber} </h1>
+          <h2>Freelancer</h2>
+        </div>
+        </div>
+      </div>
+     
 
 
     </div>
 
-  )
+  );
+
+
 
 }
-
-}
-
-export default Home;

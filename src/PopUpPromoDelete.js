@@ -32,7 +32,7 @@ export default function PopUpPromoDelete(props) {
 
         <Popup
             trigger={
-                promo ? (<Button variant="danger" >Delete promo</Button>) : (<></>)}
+                promo ? (<Button className="butt" variant="danger" >Delete promo</Button>) : (<></>)}
             modal
         >
             {close => (
