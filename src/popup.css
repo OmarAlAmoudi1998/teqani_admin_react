@@ -6,6 +6,20 @@
    
 
 }
+.popupAddPromo{
+
+    width: 500px;
+    height: 100%;
+    position: center;
+   
+
+}
+
+.popup-content {
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+
 .popupFreelancer{
 
     margin-left: 420px;
@@ -82,3 +96,15 @@ margin-bottom: 10px;
     width: 300,
     
 }
+
+.arrangeButtons{
+
+    margin-left:20px;
+  
+  }
+
+  .arrangePopUpButtons{
+
+    margin-left:440px;
+
+  }

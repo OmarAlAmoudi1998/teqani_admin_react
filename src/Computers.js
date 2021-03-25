@@ -20,7 +20,7 @@ const Computers = () => {
 
   const [compposts, setCompPosts] = useState([]);
   const [offers, setOffers] = useState([]);
-
+  const [UserID,setUserID] = useState('')
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
   const [DisplayName, setDisplayName] = useState('');
@@ -31,6 +31,7 @@ const Computers = () => {
   const [Phone, setPhone] = useState('');
   const [Images, setImages] = useState('');
   const [pID, setPID] = useState('');
+  const [City, setCity] = useState('');
   let [show, setShow] = useState(false)
   const dbDirectory = "posts/Computer/posts"
   // let getCustomersData = async () => {
@@ -52,6 +53,7 @@ const Computers = () => {
                 temp.push(data)
             })
             setOffers(temp)
+            console.log(pID)
             console.log(offers)
             
             
@@ -88,6 +90,8 @@ const Computers = () => {
 
   }
 
+ 
+
   const coulmns = [
     {
       dataField: "Title",
@@ -101,13 +105,19 @@ const Computers = () => {
       text: "Description",
       hidden: false,
 
+
     },
     {
       dataField: "DisplayName",
       text: "Display name",
       sort: true,
       hidden: true,
-
+      
+    },
+    {
+      dataField: "City",
+      text: "City",
+      hidden: false,
     },
     {
       dataField: "Date",
@@ -164,6 +174,7 @@ const Computers = () => {
     clickToSelect: true,
     style: { backgroundColor: '#c8e6c9' },
     onSelect: (row, isSelect, rowIndex, e) => {
+      setPID(row.postID)
       console.log(row.Images)
       console.log(row.Location)
       setTitle(row.Title)
@@ -175,7 +186,8 @@ const Computers = () => {
       setLocation(row.Location)
       setPhone(row.Phone)
       setImages(row.Images)
-      setPID(row.postID)
+      
+      setCity(row.City)
       setShow(true)
       getOffersData()
       console.log(pID)
@@ -222,7 +234,9 @@ const Computers = () => {
         Phone={Phone}
         Images={Images}
         dbDirectory={dbDirectory}
+        City = {City}
         postID={pID}
+        UserID = {UserID}
       />
       <PopUpCompEdit
 
@@ -230,12 +244,16 @@ const Computers = () => {
         Description={Description}
         dbDirectory={dbDirectory}
         postID={pID}
+        handleShow={handleShow}
+        show={show}
       />
 
       <PopUpViewPostOffers
       
       postID={pID}
       offers = {offers}
+      handleShow={handleShow}
+        show={show}
       />
       </div>
       ) : (<></>)}

@@ -5,19 +5,23 @@ import { Button } from 'react-bootstrap';
 import './popup.css'
 import { db } from "./config/fire";
 import TextField from '@material-ui/core/TextField';
+import './Home.css'
+import { useAlert } from 'react-alert'
 
 export default function PopUpCompEdit(props) {
 
 
-
+    const alert = useAlert()
     const Title = props.Title;
     const Description = props.Description;
     const Images = props.Images;
     const postID = props.postID;
     let postId = ''
-    const [newTitle, setNewTitle] = useState("")
-    const [newDescription, setNewDescription] = useState("")
+    const [newTitle, setNewTitle] = useState(Title)
+    const [newDescription, setNewDescription] = useState(Description)
     const dbDirectory = props.dbDirectory;
+    let [show,setShow] = useState(props.show)
+    const handleShow = props.handleShow
 
     const handleChangeTitle = e => {
 
@@ -48,24 +52,29 @@ export default function PopUpCompEdit(props) {
     // }
 
     async function EditPost() {
-        if (newTitle != "" && newDescription!=""){
+        if (newTitle != "" && newDescription!="" && newTitle != Title && newDescription != Description){
         db.collection(dbDirectory).doc(postID)
             .update({
                 "Title": newTitle,
                 "Description": newDescription
             })
-        } else if(newTitle !="" && newDescription == "") {
+            alert.success('The title and description updated successfully !')
+        } else if(newTitle !="" && newDescription != "" && newTitle != Title && newDescription==Description) {
             db.collection(dbDirectory).doc(postID)
             .update({
                 "Title": newTitle,
                 "Description": Description
             })
-        } else if (newTitle==""&&newDescription!=""){
+            alert.success('The title updated successfully !')
+        } else if (newTitle!=""&&newDescription!=""&& newTitle == Title && newDescription!=Description){
             db.collection(dbDirectory).doc(postID)
             .update({
                 "Title": Title,
                 "Description": newDescription
             })
+            alert.success('The description updated successfully !')
+        } else if (newTitle == "" && newDescription == ""){
+            alert.error('The fields are empty, The data has been reset to it default value')
         }
     }
 
@@ -74,7 +83,7 @@ export default function PopUpCompEdit(props) {
         <Popup
 
             trigger={
-                Title ? (<Button variant="info" className="butt"> Edit post</Button>) : (<></>)}
+                Title ? (<Button variant="info" className="butt mr-3"> Edit post</Button>) : (<></>)}
             modal
         >
 
@@ -96,6 +105,8 @@ export default function PopUpCompEdit(props) {
                             }}
                             variant="outlined"
                             defaultValue={Title}
+                            error={newTitle === "" }
+                            helperText={newTitle === ""  ? 'Please fill the field' : ''}
                             onChange={handleChangeTitle}
                             
                         />
@@ -111,14 +122,24 @@ export default function PopUpCompEdit(props) {
                             defaultValue={Description}
                             variant="outlined"
                             onChange={handleChangeDesc}
+                            error={newDescription === "" }
+                            helperText={newDescription === ""  ? 'Please fill the field' : ''}
                             fullWidth
 
                         />
                         <hr></hr>
-                        <div className="center"><Button variant="info" onClick={() => { 
+                        <div className="row">
+                        <div className="arrangePopUpButtons"><Button variant="info" onClick={() => { 
                             EditPost(); 
+                            handleShow();
                             close();
                             }}>Save</Button></div>
+                            <div className="ml-3"><Button variant="danger" onClick={() => { 
+                            setNewTitle(Title)
+                            setNewDescription(Description)
+                            close();
+                            }}>Cancel</Button></div>
+                            </div>
                     </form>
                 </div>
             )}

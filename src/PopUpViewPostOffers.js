@@ -10,21 +10,30 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import PopUpOfferDelete from "./PopUpOfferDelete"
 export default function PopUpViewPostOffers(props) {
+    
     const [postID,setPostID] = useState(props.postID);
     
     const dbDirectory = "offers"
-    let [show, setShow] = useState(false)
+    
     const offers = props.offers
     const [offerID, setOfferID] = useState("")
     const [Updated,setUpdated] = useState(false)
-    const handleShow = () => {
-
-        setShow(!show)
-
-    }
+    let [show,setShow] = useState(props.show)
+    const handleShow = props.handleShow
     
+    
+    // function checkPostIDchanging() {
+        
+    //     if (postID == props.postID){
+    //         handleShow()
+    //         setPostID("")
+    //     } else {
 
- 
+    //         setPostID(props.postID)
+
+    //     }
+
+    // }
 
     const coulmns = [
         {
@@ -40,8 +49,6 @@ export default function PopUpViewPostOffers(props) {
             text: "User ID",
             sort: true,
             hidden: true,
-
-
         },
         {
             dataField: "FreeLancerID",
@@ -144,7 +151,7 @@ export default function PopUpViewPostOffers(props) {
         <Popup
         closeOnDocumentClick={false}
             trigger={
-                postID ? (<Button variant="danger" >View offers</Button>) : (<></>)}
+                postID ? (<Button className="butt mr-3"  variant="info" >View offers</Button>) : (<></>)}
             modal
         >
             {close => (
@@ -160,7 +167,7 @@ export default function PopUpViewPostOffers(props) {
                 <div className="popup">
                     <BootstrapTaple
                         bootstrap4
-                        keyField="FreeLancerID"
+                        keyField="offerID"
                         data={offers}
                         columns={coulmns}
                         selectRow={selectRow}
@@ -172,6 +179,7 @@ export default function PopUpViewPostOffers(props) {
                     />
                     <Button className="ml-3"variant="danger" onClick={() => {
                         console.log(offers)
+                        handleShow()
                         close();
 
                     }

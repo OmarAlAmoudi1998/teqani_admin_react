@@ -37,7 +37,7 @@ export default function PopUpPostComp(props) {
 
         <Popup
             trigger={
-                show ? (<Button variant="danger" > Delete post</Button>) : (<></>)}
+                show ? (<Button className="butt mr-3" variant="danger" > Delete post</Button>) : (<></>)}
             modal
         >
             {close => (

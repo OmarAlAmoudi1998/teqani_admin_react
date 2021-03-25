@@ -132,6 +132,8 @@ const Promo = () => {
         promo = {promo}
         validDate = {validDate}
         discount = {discount}
+        show={show}
+        handleShow={handleShow}
         />
 
             </div>):(<></>)}

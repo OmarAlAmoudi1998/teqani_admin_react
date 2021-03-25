@@ -206,7 +206,6 @@ const Freelancer = () => {
         <br></br>
 
         <h1 className="detailsHead">Freelancers details</h1>
-        <p>{getHowManyFreelancerInCity(freelancers,'email')}</p>
 
       </div>
 

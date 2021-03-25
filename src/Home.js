@@ -53,6 +53,7 @@ export default function Home() {
           temp.push(data)
         })
         setFreelancersData(temp)
+        console.log(fire.auth().currentUser)
       })
     } catch (e) {
       console.log('Failed to get data')

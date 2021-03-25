@@ -7,12 +7,14 @@ import TextField from '@material-ui/core/TextField';
 import './register.css'
 import { Button } from 'react-bootstrap';
 import { useAlert } from 'react-alert'
+import { useHistory } from "react-router-dom";
 const RegisterAdmin = () => {
     const [fullName,setFullName] = useState("")
     const [email, setEmail] = useState("asd1@gmail.com")
     const [password, setPassword] = useState("123456")
     const dbDirectory = "users/Admin/users"
     const alert = useAlert()
+    const history = useHistory();
 
     const handleChangeName = e => {
 
@@ -32,9 +34,19 @@ const RegisterAdmin = () => {
         console.log(e.target.value)
     
     }
+
+    const routeChange = () =>{ 
+        let path = `/sign-in`; 
+        history.push(path);
+      }
+
     function RegisterNewAdmin() {
         
-        auth.createUserWithEmailAndPassword(email,password)
+        auth.createUserWithEmailAndPassword(email,password).then((user) =>{
+
+            fire.auth().signOut();
+            routeChange();
+        })
         
         db.collection(dbDirectory).doc(email).set({
             "name": fullName,
@@ -43,6 +55,7 @@ const RegisterAdmin = () => {
 
         document.getElementById("registerForm").reset();
         console.log(auth.currentUser.email)
+        fire.auth().signOut();
     }
 
     return(

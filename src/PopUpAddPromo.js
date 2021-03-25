@@ -11,11 +11,13 @@ import { useAlert } from 'react-alert'
 export default function PopUpAddPromo(props) {
 
     const alert = useAlert()
-    const [Promo, setPromo] = useState("-")
+    const [Promo, setPromo] = useState("")
     const [ValidDate, setValidDate] = useState("")
-    const [percent, setPercent] = useState("1")
+    const [percent, setPercent] = useState(1)
     const dbDirectory = props.dbDirectory;
-    
+    let getDate = new Date();
+    let todayDate =  getDate.getFullYear() + "-"+ correctMonth() +"-"+ getDate.getDate()
+
     const handleChangePromo = e => {
 
         setPromo(e.target.value);
@@ -27,6 +29,7 @@ export default function PopUpAddPromo(props) {
 
         setValidDate(e.target.value);
         console.log(e.target.value)
+        console.log(todayDate)
     }
 
     const handleChangePercent = e => {
@@ -35,16 +38,18 @@ export default function PopUpAddPromo(props) {
     
     }
 
-    // function makeRandomPromo() {
-    //     var text = "";
-    //     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      
-    //     for (var i = 0; i < 4; i++)
-    //       text += possible.charAt(Math.floor(Math.random() * possible.length));
-    //     console.log(text)
-    //     return text;
+    function correctMonth(){
 
-    //   }
+        let currentMonth = parseInt(getDate.getMonth()+1)
+
+        if (currentMonth < 10){
+            let currentMonthModify = "0"+parseInt(getDate.getMonth()+1)
+            return currentMonthModify
+        } else {
+            return currentMonth
+        }
+
+    }
 
     function isPwrong(percent) {
         if ( percent >= 1 && percent <= 100){
@@ -60,10 +65,11 @@ export default function PopUpAddPromo(props) {
         console.log(Promo)
         console.log(percent)
         console.log(ValidDate)
-        if (Promo != "" && percent!="" && ValidDate!=""){
+        
+        if (Promo != "" && percent!="" && ValidDate!="" && Promo !=" " && percent >= 1 && percent <= 100 ){
         db.collection(dbDirectory).add({
                 "promo": Promo,
-                "discount": percent,
+                discount: percent,
                 "validDate":ValidDate
             })
         } else {
@@ -77,12 +83,13 @@ export default function PopUpAddPromo(props) {
     return (
 
         <Popup
+        closeOnDocumentClick={false}
             trigger={
                 <Button className="butt" variant="info" >Add promo</Button>}
             modal
         >
             {close => (
-                <div className="popup">
+                <div className="popup-content">
 
                     <form>
 
@@ -95,10 +102,9 @@ export default function PopUpAddPromo(props) {
                                 shrink: true,
                             }}
                             variant="outlined"
-                            defaultValue={Promo}
+                            
                             onChange={handleChangePromo}
-                            error={Promo === "" }
-                            helperText={Promo === ""  ? 'Please fill the field' : ''}
+                            
 
                         />
                         <br></br>
@@ -129,7 +135,10 @@ export default function PopUpAddPromo(props) {
                             
                             variant="outlined"
                             onChange={handleChangeDate}
-                            
+                            inputProps={{
+                                min: todayDate,
+                                
+                              }}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -137,12 +146,18 @@ export default function PopUpAddPromo(props) {
 
                     </form>
 
-                    <Button variant="danger" onClick={() => {
+                    <Button className="mr-2 ml-3 mt-4" variant="info" onClick={() => {
                         AddPromo();
                         close();
                         
                     }
-                    }>Confirm</Button>
+                    }>Add promo</Button>
+                    <Button className=" mt-4" variant="danger" onClick={() => {
+                        
+                        close();
+                        setPercent(1)
+                    }
+                    }>Close</Button>
                 </div>
             )}
         </Popup>

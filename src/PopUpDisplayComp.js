@@ -4,7 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import { Button } from 'react-bootstrap';
 import './popup.css'
 import { db } from "./config/fire";
-
+import { customers } from './Customers.js'
 
 export default function PopUpDisplayComp(props) {
 
@@ -18,15 +18,13 @@ export default function PopUpDisplayComp(props) {
     const Location = props.Location;
     const Phone = props.Phone;
     const Images = props.Images;
-    let postId = ''
-    const dbDirectory = props.dbDirectory;
-    
-
+    const City = props.City;
+   
     return (
-
+       
         <Popup
             trigger={
-                postID ? (<Button variant="info" className="butt" > Display post</Button>) : (<></>)}
+                postID ? (<Button variant="info" className="butt mr-3"  > Display post</Button>) : (<></>)}
             modal
         >
             
@@ -38,17 +36,15 @@ export default function PopUpDisplayComp(props) {
                     
                     <hr></hr>
                     <p className="mainT"><strong>Post information</strong></p>
-                    <p>Display name : {DisplayName} </p>
-                    <p>Date : {Date} </p>
-                    <p>Email : {Email}</p>
-                    <p>Category : {Catagory}</p>
-                    <p>Location : {Location}</p>
-                    <p>Phone number : {Phone}</p>
+                    <p><strong>Customer Email : </strong>{Email}</p>
+                    <p><strong>Date and Time : </strong>{Date} </p>
+                    <p><strong>Category : </strong>{Catagory}</p>
+                    <p><strong>City : </strong>{City}</p>
                     <hr></hr>
                     <p className="mainT"><strong>Post content</strong></p>
-                    <p>Description : </p>
+                    <p><strong>Description : </strong></p>
                     <p>{Description}</p>
-                    <p>Images : </p>
+                    <p><strong>Images : </strong></p>
                     {Images[0] ? (<a href={Images[0]}><img className="aimg" src={Images[0]}></img></a>) : ("The post doesn't have images")}
                     {Images[1] ? (<a href={Images[1]}><img className="aimg" src={Images[1]}></img></a>) : (<></>)}
                     {Images[2] ? (<a href={Images[2]}><img className="aimg" src={Images[2]}></img></a>) : (<></>)}
