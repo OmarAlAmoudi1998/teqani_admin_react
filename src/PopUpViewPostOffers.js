@@ -15,25 +15,33 @@ export default function PopUpViewPostOffers(props) {
     
     const dbDirectory = "offers"
     
-    const offers = props.offers
-    const [offerID, setOfferID] = useState("")
-    const [Updated,setUpdated] = useState(false)
-    let [show,setShow] = useState(props.show)
-    const handleShow = props.handleShow
+    
+    let offers = []
+    let offerID = ""
+    
+    let show = props.show
+    let handleShow = props.handleShow
+    
+   
+
+        try {
+             db.collection("offers").where("postID", '==', ""+postID).onSnapshot(snapshot => {
+                const temp = []
+                snapshot.forEach(doc => {
+                    const data = doc.data()
+                    temp.push(data)
+                })
+                offers = temp
+                
+                
+            })
+    
+        } catch (e) {
+            console.log('Failed to get data')
+        }
     
     
-    // function checkPostIDchanging() {
-        
-    //     if (postID == props.postID){
-    //         handleShow()
-    //         setPostID("")
-    //     } else {
 
-    //         setPostID(props.postID)
-
-    //     }
-
-    // }
 
     const coulmns = [
         {
@@ -131,8 +139,8 @@ export default function PopUpViewPostOffers(props) {
 
         style: { backgroundColor: '#c8e6c9' },
         onSelect: (row, isSelect, rowIndex, e) => {
-            setOfferID(row.offerID)
-            setShow(true)
+            offerID = row.offerID
+            show = !show
             console.log(row.offerID)
             console.log(offerID)
         }
@@ -140,10 +148,7 @@ export default function PopUpViewPostOffers(props) {
 
     
 
-    // useEffect(() => {
-    //     getOffersData();
-
-    // }, [])
+  
 
 
     return (
@@ -161,8 +166,8 @@ export default function PopUpViewPostOffers(props) {
                     {show ? (<PopUpOfferDelete
                     offerID = {offerID}
                     dbDirectory = {dbDirectory}
-                    show={show}
-                    handleShow={handleShow}
+                    handleShow = {handleShow}
+                    
                     />) : (<></>)}
                 <div className="popup">
                     <BootstrapTaple

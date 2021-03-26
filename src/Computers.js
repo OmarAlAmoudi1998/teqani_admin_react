@@ -43,27 +43,27 @@ const Computers = () => {
   }
 
 
-  async function getOffersData() {
+//   async function getOffersData() {
 
-    try {
-        await db.collection("offers").where("postID", '==', ""+pID).onSnapshot(snapshot => {
-            const temp = []
-            snapshot.forEach(doc => {
-                const data = doc.data()
-                temp.push(data)
-            })
-            setOffers(temp)
-            console.log(pID)
-            console.log(offers)
+//     try {
+//         await db.collection("offers").where("postID", '==', ""+pID).onSnapshot(snapshot => {
+//             const temp = []
+//             snapshot.forEach(doc => {
+//                 const data = doc.data()
+//                 temp.push(data)
+//             })
+//             setOffers(temp)
+//             console.log(pID)
+//             console.log(offers)
             
             
-        })
+//         })
 
-    } catch (e) {
-        console.log('Failed to get data')
-    }
+//     } catch (e) {
+//         console.log('Failed to get data')
+//     }
 
-}
+// }
 
   async function getComputerpostsData() {
 
@@ -186,10 +186,15 @@ const Computers = () => {
       setLocation(row.Location)
       setPhone(row.Phone)
       setImages(row.Images)
-      
       setCity(row.City)
       setShow(true)
-      getOffersData()
+      // setTimeout(() => {
+        
+      // getOffersData()
+      
+      // },500)
+      
+      
       console.log(pID)
     }
   };
@@ -197,7 +202,7 @@ const Computers = () => {
   useEffect(() => {
 
     getComputerpostsData();
-    getOffersData();
+    // getOffersData();
   }, [])
 
   return (
@@ -251,7 +256,7 @@ const Computers = () => {
       <PopUpViewPostOffers
       
       postID={pID}
-      offers = {offers}
+      // offers = {offers}
       handleShow={handleShow}
         show={show}
       />

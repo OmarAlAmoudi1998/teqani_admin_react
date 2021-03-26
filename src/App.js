@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -12,32 +12,42 @@ import Computers from "./Computers";
 import Promo from "./Promo";
 import Freelancer from"./Freelancer";
 import RegisterAdmin from "./RegisterAdmin"
+import Orders from "./Orders"
+import PrivateRoute from "./PrivateRoute";
+import { auth } from "./config/fire";
+import { AuthProvider } from "./AuthContext"
 function App() {
+
+  const currentUser = useState(auth.currentUser)
+
   return (
     <Router>
-      
-      <div className="App app">
+      <AuthProvider>
+      <div>
       
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
-              <div className="App app">
+              
                 
-                <Aside></Aside>
+                
                 
               {/* <Route path="/sign-up" component={SignUp} /> */}
-              <Route path="/Home" component={Home} />
-              <Route path="/Users" component={Users} />
-              <Route path="/customers" component={Customers} />
-              <Route path="/freelancers" component={Freelancer} />
-              <Route path="/Computers" component={Computers} />
-              <Route path="/RegisterAdmin" component={RegisterAdmin}/>
-              <Route path="/promo" component={Promo} />
-              </div>
+              <PrivateRoute path="/Home" component={Home}  />
+              <PrivateRoute path="/Users" component={Users}  />
+              <PrivateRoute path="/customers" component={Customers}  />
+              <PrivateRoute path="/freelancers" component={Freelancer}  />
+              <PrivateRoute path="/Computers" component={Computers}  />
+              <PrivateRoute path="/RegisterAdmin" component={RegisterAdmin}/>
+              <PrivateRoute path="/orders" component={Orders}  />
+              <PrivateRoute path="/promo" component={Promo}  />
+              
+              
             </Switch>
           
         
       </div>
+      </AuthProvider>
     </Router>
   );
 }

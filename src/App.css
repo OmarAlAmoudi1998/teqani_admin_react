@@ -2,8 +2,18 @@
 
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100%;
 }
 
+
+.arrangment{
+
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

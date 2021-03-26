@@ -4,7 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import { Button } from 'react-bootstrap';
 import './popup.css'
 import { db } from "./config/fire";
-import { customers } from './Customers.js'
+
 
 export default function PopUpDisplayComp(props) {
 

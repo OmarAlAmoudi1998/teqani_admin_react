@@ -26,13 +26,10 @@ body {
 
 }
 .app {
-  height: fit-content;
-  display: inline-flex;
-  position: sticky;  
-  width: 100%;
-  top : 0;
-  left:0;
-  right: 0;
+  height: 100%;
+     width: 100%; 
+       display: flex; 
+         position: fixed;
   
 
 

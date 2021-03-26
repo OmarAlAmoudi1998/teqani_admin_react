@@ -28,8 +28,8 @@ const Customers = () => {
   const dbDirectory = "users/Customer/users"
 
   async function getCustomersData() {
-    
-  
+
+
     try {
 
 
@@ -57,43 +57,43 @@ const Customers = () => {
       dataField: "firstName",
       text: "First name",
       sort: true,
-      hidden : false,
+      hidden: false,
       filter: textFilter(),
-      
+
     },
     {
       dataField: "lastName",
       text: "Last name",
       sort: true,
       filter: textFilter(),
-      hidden : false
+      hidden: false
 
     },
     {
       dataField: "phoneNumber",
       text: "Phone number",
       filter: textFilter(),
-      hidden : false
+      hidden: false
 
     },
     {
       dataField: "addressMap.city",
       text: "City",
-      hidden : false,
+      hidden: false,
       filter: textFilter(),
-      
+
     },
     {
       dataField: "addressMap.district",
       text: "District",
-      hidden : true
+      hidden: true
 
-      
+
     },
     {
       dataField: "addressMap.street",
       text: "Street",
-      hidden : true
+      hidden: true
 
     },
     {
@@ -106,17 +106,17 @@ const Customers = () => {
     {
       dataField: "userType",
       text: "User type",
-      hidden : true
+      hidden: true
     },
     {
       dataField: "uid",
       text: "User ID",
-      hidden : true
+      hidden: true
     },
     {
       dataField: "addressMap",
       text: "Address Map",
-      hidden : true
+      hidden: true
     },
 
   ]
@@ -129,10 +129,10 @@ const Customers = () => {
   const selectRow = {
     mode: 'radio',
     clickToSelect: true,
-    
+
     style: { backgroundColor: '#c8e6c9' },
     onSelect: (row, isSelect, rowIndex, e) => {
-      
+
       setFirstName(row.firstName)
       setLastName(row.lastName)
       setEmail(row.email)
@@ -169,16 +169,16 @@ const Customers = () => {
         data={data}
 
       /> */}
-<PopUpDisplayUser
+      <PopUpDisplayUser
 
-firstName = {firstName}
-lastName = {lastName}
-phoneNumber = {phoneNumber}
-email = {email}
-addressMap = {addressMap}
-userType = {userType}
-uid = {uid}
-/>
+        firstName={firstName}
+        lastName={lastName}
+        phoneNumber={phoneNumber}
+        email={email}
+        addressMap={addressMap}
+        userType={userType}
+        uid={uid}
+      />
       <div className="container">
         <BootstrapTaple
           bootstrap4
@@ -187,10 +187,10 @@ uid = {uid}
           columns={coulmns}
           selectRow={selectRow}
           pagination={paginationFactory()}
-          defaultSorted={ defaultSorted }
-          filter={ filterFactory() }
+          defaultSorted={defaultSorted}
+          filter={filterFactory()}
           condensed
-          
+
         />
 
 

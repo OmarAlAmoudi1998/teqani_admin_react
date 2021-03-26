@@ -10,13 +10,13 @@ import { db } from "./config/fire";
 export default function PopUpOfferDelete(props) {
 
 
-    const offerID = props.offerID;
-    const dbDirectory = props.dbDirectory;
-    let [show,setShow] = useState(props.show)
-    const handleShow = props.handleShow
-    async function deleteOffer(offerID) {
+    const [offerID] = useState(""+props.offerID);
+    const dbDirectory = props.dbDirectory; 
+
+    let handleShow = props.handleShow
+     function deleteOffer() {
         console.log(offerID)
-        await db.collection(dbDirectory).where("offerID", '==', offerID).get().then(function (querySnapshot) {
+         db.collection(dbDirectory).where("offerID", '==', offerID).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 
                 doc.ref.delete();
@@ -33,7 +33,7 @@ export default function PopUpOfferDelete(props) {
         <Popup
         closeOnDocumentClick={false}
             trigger={
-                offerID ? (<Button variant="danger" >Delete Offer</Button>) : (<></>)}
+                <Button variant="danger" >Delete Offer</Button> }
             modal
         >
             {close => (
@@ -42,7 +42,7 @@ export default function PopUpOfferDelete(props) {
                     <p>Are you sure that you want to delete this Offer ?</p>
                     <Button variant="danger" className="ml-3" onClick={() => {
 
-                        deleteOffer(offerID);
+                        deleteOffer();
                         handleShow();
                         close();
                         
