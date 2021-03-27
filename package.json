@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
     "bootstrap": "^4.6.0",
+    "emailjs-com": "^2.6.4",
     "firebase": "^8.2.7",
     "firebase-admin": "^9.5.0",
     "fontsource-roboto": "^4.0.0",

@@ -35,7 +35,7 @@ export default function PopUpDisplayOrder(props) {
 
 
              db.collection(customerDBdirectory).where("uid",'==',CustomerID).onSnapshot(snapshot => {
-              const temp = []
+              
               snapshot.forEach(doc => {
                 
                 CustomerFirstName = doc.data().firstName
@@ -60,7 +60,7 @@ export default function PopUpDisplayOrder(props) {
 
 
              db.collection(freelancerDBdirectory).where("uid",'==',FreelancerID).onSnapshot(snapshot => {
-              const temp = []
+              
               snapshot.forEach(doc => {
                 FreelancerFirstName = doc.data().firstName
                 FreelancerLastName = doc.data().lastName

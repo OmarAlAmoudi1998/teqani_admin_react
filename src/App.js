@@ -13,6 +13,7 @@ import Promo from "./Promo";
 import Freelancer from"./Freelancer";
 import RegisterAdmin from "./RegisterAdmin"
 import Orders from "./Orders"
+import ContactUs from "./ContactUs"
 import PrivateRoute from "./PrivateRoute";
 import { auth } from "./config/fire";
 import { AuthProvider } from "./AuthContext"
@@ -41,7 +42,7 @@ function App() {
               <PrivateRoute path="/RegisterAdmin" component={RegisterAdmin}/>
               <PrivateRoute path="/orders" component={Orders}  />
               <PrivateRoute path="/promo" component={Promo}  />
-              
+              <PrivateRoute path="/contactUs" component={ContactUs}  />
               
             </Switch>
           
