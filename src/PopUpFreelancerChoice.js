@@ -24,6 +24,7 @@ export default function PopUpFreelancerChoice(props) {
     const ValidationUnderProgress = props.ValidationUnderProgress
     let [show, setShow] = useState(props.show)
     const handleShow = props.handleShow
+    const [isMessageEmpty,setIsMessageEmpty] = useState(false)
 
 
     const handleChangeSelectedValue = (event) => {
@@ -32,6 +33,7 @@ export default function PopUpFreelancerChoice(props) {
 
     const handleChangeRejectMessage = (event) => {
         setRejectMessage(event.target.value);
+        setIsMessageEmpty(false)
 
     }
 
@@ -41,7 +43,6 @@ export default function PopUpFreelancerChoice(props) {
                 .update({
                     "AccountDetails.ValidationUnderProgress": false,
                     "AccountDetails.isAccountActivated": true,
-                    "AccountDetails.isAccountRejected": false,
                     "AccountDetails.RejectedMessage": "",
                 })
         }
@@ -50,7 +51,6 @@ export default function PopUpFreelancerChoice(props) {
                 .update({
                     "AccountDetails.ValidationUnderProgress": false,
                     "AccountDetails.isAccountActivated": false,
-                    "AccountDetails.isAccountRejected": true,
                     "AccountDetails.RejectedMessage": rejectMessage,
 
                 })
@@ -94,7 +94,21 @@ export default function PopUpFreelancerChoice(props) {
                             </RadioGroup>
                         </FormControl>
                         </div>
-                        {selectedValue === 'yes' && (<div></div>)}
+                        {selectedValue === 'yes' && (<div><br></br>
+                        <div className="popupFreelancer">
+                        <Button variant="info" className="mr-1"onClick={() => {
+                            
+                                updateAccountDetails();
+                                handleShow();
+                                close();
+                                
+                        }
+                        }>Confirm</Button>
+                        <Button variant="info" className="ml-3"onClick={() => {
+                            close();
+                        }
+                        }>Close</Button>
+                    </div></div>)}
                         {selectedValue === 'no' && (<div>
                             <p><strong>Reject message : </strong></p>
                             <TextField
@@ -106,15 +120,19 @@ export default function PopUpFreelancerChoice(props) {
                             variant="outlined"
                             onChange={handleChangeRejectMessage}
                             fullWidth
-
-                        /></div>)}
-
+                            error={isMessageEmpty}
+                            helperText={isMessageEmpty ? 'Please write the reject message' : ' '}
+                        />
                         <br></br>
                         <div className="popupFreelancer">
                         <Button variant="info" className="mr-1"onClick={() => {
-                            updateAccountDetails();
-                            handleShow();
-                            close();
+                            if(rejectMessage != "" ){
+                                updateAccountDetails();
+                                handleShow();
+                                close();
+                                } else {
+                                    setIsMessageEmpty(true)
+                                }
                         }
                         }>Confirm</Button>
                         <Button variant="info" className="ml-3"onClick={() => {
@@ -122,6 +140,10 @@ export default function PopUpFreelancerChoice(props) {
                         }
                         }>Close</Button>
                     </div>
+                        
+                        </div>)}
+
+                        
                 </div>
             )}
         </Popup>

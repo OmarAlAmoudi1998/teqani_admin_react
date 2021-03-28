@@ -14,6 +14,7 @@ import 'reactjs-popup/dist/index.css';
 import firebase from 'firebase';
 import PopUpDisplayUser from './PopUpDisplayUser';
 import PopUpFreelancerChoice from './PopUpFreelancerChoice'
+import PopUpFreelancerDeactive from './PopUpFreelancerDeactive'
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Freelancer = () => {
 
@@ -30,6 +31,8 @@ const Freelancer = () => {
   const [profilePicture, setProfilePicture] = useState('')
   const [AccountDetails, setAccountDetails] = useState('')
   const [ValidationUnderProgress, setValidationUnderProgress] = useState('')
+  const [isAccountActivated, setIsAccountActivated] = useState('')
+  let isActive = checkActiveValue()
   let [show, setShow] = useState(false)
   const handleShow = () => {
 
@@ -37,6 +40,19 @@ const Freelancer = () => {
 
   }
   const dbDirectory = "users/Freelancer/users"
+
+
+  function checkActiveValue() {
+
+    if (isAccountActivated === true) {
+      return true
+    } else {
+
+      return false
+
+    }
+
+  }
 
 
   async function getFreelancersData() {
@@ -68,7 +84,7 @@ const Freelancer = () => {
     var count = 0;
     array.forEach((v) => (v === value && count++));
     return count;
-}
+  }
 
   const coulmns = [
     {
@@ -186,8 +202,11 @@ const Freelancer = () => {
       setProfilePicture(row.profilePicture)
       setAccountDetails(row.AccountDetails)
       setValidationUnderProgress(row.AccountDetails.ValidationUnderProgress)
+      setIsAccountActivated(row.AccountDetails.isAccountActivated)
       setShow(true)
       console.log(ValidationUnderProgress)
+      console.log(isAccountActivated)
+      console.log(isActive)
     }
   };
 
@@ -234,7 +253,15 @@ const Freelancer = () => {
 
       {show ? (<div>
 
-        {ValidationUnderProgress ? (<PopUpFreelancerChoice
+        {isActive ? (<PopUpFreelancerDeactive
+        AccountDetails={AccountDetails}
+        dbDirectory={dbDirectory}
+        ValidationUnderProgress={ValidationUnderProgress}
+        uid={uid}
+        show={show}
+        handleShow={handleShow}
+        
+        />) : (<PopUpFreelancerChoice
 
           AccountDetails={AccountDetails}
           dbDirectory={dbDirectory}
@@ -242,9 +269,11 @@ const Freelancer = () => {
           uid={uid}
           show={show}
           handleShow={handleShow}
-        />) : (<></>)
+        />)
 
         }
+
+        
 
       </div>) : (<></>)}
 

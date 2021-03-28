@@ -154,7 +154,7 @@ const TicketPayments = () => {
             </div>
 
             <br></br>
-
+            <div className="radioButtonContainer">
             <FormControl component="fieldset">
                 <RadioGroup row>
                     <FormControlLabel
@@ -175,7 +175,7 @@ const TicketPayments = () => {
                     />
                 </RadioGroup>
             </FormControl>
-
+            </div>
             <br></br>
             <br></br>
             {selectedValue === 'notreplied' && (<div>
