@@ -13,7 +13,9 @@ import Promo from "./Promo";
 import Freelancer from"./Freelancer";
 import RegisterAdmin from "./RegisterAdmin"
 import Orders from "./Orders"
-import ContactUs from "./ContactUs"
+import TicketAccountActivation from "./TicketAccountActivation"
+import TicketPayments from "./TicketPayments"
+import TicketReportBugs from "./TicketReportBugs"
 import PrivateRoute from "./PrivateRoute";
 import { auth } from "./config/fire";
 import { AuthProvider } from "./AuthContext"
@@ -42,8 +44,9 @@ function App() {
               <PrivateRoute path="/RegisterAdmin" component={RegisterAdmin}/>
               <PrivateRoute path="/orders" component={Orders}  />
               <PrivateRoute path="/promo" component={Promo}  />
-              <PrivateRoute path="/contactUs" component={ContactUs}  />
-              
+              <PrivateRoute path="/TicketAccountActivation" component={TicketAccountActivation}  />
+              <PrivateRoute path="/TicketPayments" component={TicketPayments}  />
+              <PrivateRoute path="/TicketReportBugs" component={TicketReportBugs}  />
             </Switch>
           
         

@@ -10,7 +10,7 @@ import { db } from "./config/fire";
 export default function PopUpOfferDelete(props) {
 
 
-    const [offerID] = useState(""+props.offerID);
+    const offerID = props.offerID
     const dbDirectory = props.dbDirectory; 
 
     let handleShow = props.handleShow
@@ -33,7 +33,7 @@ export default function PopUpOfferDelete(props) {
         <Popup
         closeOnDocumentClick={false}
             trigger={
-                <Button variant="danger" >Delete Offer</Button> }
+                <Button onClick={console.log("aaaa")} variant="danger" >Delete Offer</Button> }
             modal
         >
             {close => (

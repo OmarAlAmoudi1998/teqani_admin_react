@@ -20,7 +20,6 @@ export default function PopUpDisplayOrder(props) {
     const isRatingDone = props.isRatingDone
     const orderID = props.orderID
     const promo = props.promo
-    const PayingState = isTotalPaid();
     const customerDBdirectory = "users/Customer/users"
     const freelancerDBdirectory = "users/Freelancer/users"
     
@@ -76,21 +75,7 @@ export default function PopUpDisplayOrder(props) {
           }
 
 
-    function isTotalPaid(){
-
-        if (Price === Payed){
-            return "The customer paid 100% of the price"
-        } else if(Payed === 0){
-
-            return  "The customer did not pay"
-
-        }  else if(Price > Payed) {
-
-            return "The customer payed 40% of the price"
-
-        }
-
-    }
+ 
 
     return (
        
@@ -119,12 +104,7 @@ export default function PopUpDisplayOrder(props) {
                     <p className="mainT"><strong>Payment information</strong></p>
                     <p><strong>The Total price : </strong>{Price} SR</p>
                     <p><strong>The customer has paid : </strong>{Payed} SR</p>
-                    <p><strong>{PayingState}</strong></p>
-                    {/* <p><strong>City : </strong>{City}</p> */}
-                    <hr></hr>
-                    <p className="mainT"><strong>Post content</strong></p>
-                    {/* <p><strong>Description : </strong></p>
-                    <p>{Description}</p> */}
+                    
                     
                     <br></br>
                     <br></br>

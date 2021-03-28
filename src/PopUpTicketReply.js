@@ -8,17 +8,31 @@ import { Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import { useAlert } from 'react-alert'
 
-export default function PopupContactUs(props) {
+export default function PopUpTicketReply(props) {
     const alert = useAlert()
     const [adminMessage, setAdminMessage] = useState("")
     const Message = props.Message;
-    const UserEmail = "sidrozzg@gmail.com";
+    const UserEmail = props.UserEmail;
     const UserID = props.UserID;
-    const dbDirectory = "users/Customer/users"
+    const [TicketID,setTicketID] = useState("")
+    const dbDirectory = props.dbDirectory
     let show = props.show
     let handleShow = props.handleShow
 
+    try {
+        db.collection(dbDirectory).where("Message","==",Message).onSnapshot(snapshot => {
+           
+           snapshot.forEach(doc => {
+            setTicketID(doc.id)
+           })
+           
+           
+           
+       })
 
+   } catch (e) {
+       console.log('Failed to get data')
+   }
 
    var templateParams  = {
     Message : Message,
@@ -38,6 +52,7 @@ export default function PopupContactUs(props) {
     emailjs.send('gmail', 'template_sow5hqp', templateParams , 'user_vGzRKQ72pgLB3lkXyFbco')
         .then((result) => {
             console.log(result.text);
+            updateTicket();
             alert.success("Message has been sent successfully !")
         }, (error) => {
             console.log(error.text);
@@ -45,7 +60,14 @@ export default function PopupContactUs(props) {
         
     }
 
-    
+    function updateTicket() {
+        db.collection(dbDirectory).doc(TicketID)
+                .update({
+                    "AdminMessage": adminMessage,
+                    "isTicketClosed": true,
+                    
+                })
+    }
 
     return(
 
