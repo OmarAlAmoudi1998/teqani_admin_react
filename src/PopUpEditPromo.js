@@ -3,7 +3,6 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Button } from 'react-bootstrap';
 import './popup.css'
-import fire from './config/fire';
 import { db } from "./config/fire";
 import TextField from '@material-ui/core/TextField';
 import { useAlert } from 'react-alert'

@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from 'react';
-import fire from './config/fire';
 import { db } from "./config/fire";
 import BootstrapTaple from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import './Customers.css'
 import './Home.css';
-import { Button } from 'react-bootstrap';
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import firebase from 'firebase';
 import PopUpDisplayOrder from "./PopUpDispalyOrder"
-
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Orders = () => {
 
@@ -70,7 +64,6 @@ const Orders = () => {
     {
       dataField: "Title",
       text: "Title",
-      // sort: true,
       filter: textFilter(),
       hidden: false,
     },

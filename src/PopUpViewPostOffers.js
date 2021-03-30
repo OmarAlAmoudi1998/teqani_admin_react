@@ -11,7 +11,7 @@ import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import PopUpOfferDelete from "./PopUpOfferDelete"
 export default function PopUpViewPostOffers(props) {
     
-    const [postID,setPostID] = useState(props.postID);
+    const postID = props.postID;
     
     const dbDirectory = "offers"
     
@@ -133,20 +133,7 @@ export default function PopUpViewPostOffers(props) {
         order: 'desc'
     }];
 
-    const selectRow = {
-        mode: 'radio',
-        clickToSelect: true,
 
-        style: { backgroundColor: '#c8e6c9' },
-        onSelect: (row, isSelect, rowIndex, e) => {
-            offerID = row.offerID
-            show = !show
-            console.log(row.offerID)
-            console.log(offerID)
-        }
-    };
-
-    
 
   
 
@@ -163,32 +150,26 @@ export default function PopUpViewPostOffers(props) {
 
                 <div>
                     
-                    {show ? (<PopUpOfferDelete
-                    offerID = {offerID}
-                    dbDirectory = {dbDirectory}
-                    handleShow = {handleShow}
                     
-                    />) : (<></>)}
                 <div className="popup">
                     <BootstrapTaple
                         bootstrap4
                         keyField="offerID"
                         data={offers}
                         columns={coulmns}
-                        selectRow={selectRow}
                         pagination={paginationFactory()}
                         defaultSorted={defaultSorted}
                         filter={filterFactory()}
                         condensed
 
                     />
-                    <Button className="ml-3"variant="danger" onClick={() => {
-                        console.log(offers)
+                    <Button className="popupFreelancer"variant="info" onClick={() => {
+                        
                         handleShow()
                         close();
 
                     }
-                    }>Confirm</Button>
+                    }>Close</Button>
                 </div>
                 </div>
             )}

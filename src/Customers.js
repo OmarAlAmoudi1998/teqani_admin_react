@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from 'react';
-import fire from './config/fire';
 import { db } from "./config/fire";
 import BootstrapTaple from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import BootstrapTable from 'react-bootstrap-table-next';
 import './Customers.css'
 import './Home.css';
-import { Button } from 'react-bootstrap';
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import firebase from 'firebase';
-import PopUpDelete from './PopUpDelete';
 import PopUpDisplayUser from './PopUpDisplayUser';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 const Customers = () => {
@@ -164,11 +157,7 @@ const Customers = () => {
 
       <br></br>
 
-      {/* <PopUpDelete
-
-        data={data}
-
-      /> */}
+      
       <PopUpDisplayUser
 
         firstName={firstName}

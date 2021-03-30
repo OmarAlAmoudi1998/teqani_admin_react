@@ -6,12 +6,12 @@ import './popup.css'
 import fire from './config/fire';
 import { db } from "./config/fire";
 import TextField from '@material-ui/core/TextField';
-
+import { useAlert } from 'react-alert'
 
 
 export default function PopUpFreelancerChoice(props) {
 
-    
+    const alert = useAlert()
     const [rejectMessage, setRejectMessage] = useState('');
     const uid = props.uid
     const AccountDetails = props.AccountDetails;
@@ -36,6 +36,8 @@ export default function PopUpFreelancerChoice(props) {
                     "AccountDetails.isAccountActivated": false,
                     "AccountDetails.RejectedMessage": rejectMessage,
                 })
+
+                alert.success('Freelancer has been deactivated !')
         }
         
 

@@ -3,7 +3,6 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Button } from 'react-bootstrap';
 import './popup.css'
-import { db } from "./config/fire";
 
 
 export default function PopUpDisplayUser(props) {

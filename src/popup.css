@@ -117,3 +117,23 @@ margin-bottom: 10px;
     background-color: azure;
     margin-left: 700px;
   }
+
+  .radioButtonPosts{
+    padding-top: 20px;
+    border-radius: 20px;
+    height: max-content;
+    width: max-content;
+    background-color: azure;
+    margin-left: 400px;
+    margin-top: 20px;
+  }
+
+  .radioButtonTickets{
+    padding-top: 20px;
+    border-radius: 20px;
+    height: max-content;
+    width: max-content;
+    background-color: azure;
+    margin-left: 640px;
+    margin-top: 20px;
+  }

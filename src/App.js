@@ -5,17 +5,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home"
 import Login from "./Login";
 import Users from "./Users";
-import Aside from './sidebar.js';
 import Customers from './Customers.js';
-import SignUp from './SignUp.js';
-import Computers from "./Computers";
+import Posts from "./Posts";
 import Promo from "./Promo";
 import Freelancer from"./Freelancer";
 import RegisterAdmin from "./RegisterAdmin"
 import Orders from "./Orders"
-import TicketAccountActivation from "./TicketAccountActivation"
-import TicketPayments from "./TicketPayments"
-import TicketReportBugs from "./TicketReportBugs"
+import Tickets from "./Tickets"
 import PrivateRoute from "./PrivateRoute";
 import { auth } from "./config/fire";
 import { AuthProvider } from "./AuthContext"
@@ -35,18 +31,16 @@ function App() {
                 
                 
                 
-              {/* <Route path="/sign-up" component={SignUp} /> */}
+              
               <PrivateRoute path="/Home" component={Home}  />
-              <PrivateRoute path="/Users" component={Users}  />
               <PrivateRoute path="/customers" component={Customers}  />
               <PrivateRoute path="/freelancers" component={Freelancer}  />
-              <PrivateRoute path="/Computers" component={Computers}  />
+              <PrivateRoute path="/Posts" component={Posts}  />
               <PrivateRoute path="/RegisterAdmin" component={RegisterAdmin}/>
               <PrivateRoute path="/orders" component={Orders}  />
               <PrivateRoute path="/promo" component={Promo}  />
-              <PrivateRoute path="/TicketAccountActivation" component={TicketAccountActivation}  />
-              <PrivateRoute path="/TicketPayments" component={TicketPayments}  />
-              <PrivateRoute path="/TicketReportBugs" component={TicketReportBugs}  />
+              <PrivateRoute path="/Tickets" component={Tickets}  />
+              
             </Switch>
           
         

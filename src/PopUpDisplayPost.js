@@ -3,10 +3,9 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Button } from 'react-bootstrap';
 import './popup.css'
-import { db } from "./config/fire";
 
 
-export default function PopUpDisplayComp(props) {
+export default function PopUpDisplayPost(props) {
 
     const postID = props.postID
     const Title = props.Title;
@@ -15,8 +14,6 @@ export default function PopUpDisplayComp(props) {
     const Date = props.Date;
     const Email = props.Email;
     const Catagory = props.Catagory;
-    const Location = props.Location;
-    const Phone = props.Phone;
     const Images = props.Images;
     const City = props.City;
    

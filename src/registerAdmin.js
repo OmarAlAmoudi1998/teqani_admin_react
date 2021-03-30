@@ -2,7 +2,6 @@ import React, { Component,useState,useEffect } from 'react';
 import fire from "./config/fire";
 import { db } from "./config/fire";
 import { auth } from "./config/fire";
-import { admin } from "./fireAdmin";
 import TextField from '@material-ui/core/TextField';
 import './register.css'
 import { Button } from 'react-bootstrap';

@@ -18,7 +18,7 @@ export default function PopUpTicketReply(props) {
     const dbDirectory = props.dbDirectory
     let show = props.show
     let handleShow = props.handleShow
-
+    const [isMessageEmpty,setIsMessageEmpty] = useState(false)
     try {
         db.collection(dbDirectory).where("Message","==",Message).onSnapshot(snapshot => {
            
@@ -43,7 +43,7 @@ export default function PopUpTicketReply(props) {
    const handleChangeAdminMessage = e => {
 
     setAdminMessage(e.target.value);
-
+    setIsMessageEmpty(false)
 }
 
     function sendEmail() {
@@ -96,6 +96,8 @@ export default function PopUpTicketReply(props) {
                             variant="outlined"
                             onChange={handleChangeAdminMessage}
                             fullWidth
+                            error={isMessageEmpty}
+                            helperText={isMessageEmpty ? 'You can not send an empty message !' : ' '}
                         />
                         <Button variant="info" onClick={() => { 
                             if(adminMessage != ""){
@@ -104,7 +106,7 @@ export default function PopUpTicketReply(props) {
                                 close();
                                 
                                 } else {
-                                    alert.error('You can not send an empty reply !')
+                                    setIsMessageEmpty(true)
                                 } 
                                 }}>Send reply</Button>
                             <Button className="ml-3" variant="info" onClick={() => { 

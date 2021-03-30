@@ -4,14 +4,9 @@ import fire from './config/fire';
 import { db } from "./config/fire";
 import BootstrapTaple from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import BootstrapTable from 'react-bootstrap-table-next';
 import './Customers.css'
 import './Home.css';
-import { Button } from 'react-bootstrap';
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import firebase from 'firebase';
 import PopUpDisplayUser from './PopUpDisplayUser';
 import PopUpFreelancerChoice from './PopUpFreelancerChoice'
 import PopUpFreelancerDeactive from './PopUpFreelancerDeactive'
@@ -80,11 +75,7 @@ const Freelancer = () => {
 
   }
 
-  function getHowManyFreelancerInCity(array, value) {
-    var count = 0;
-    array.forEach((v) => (v === value && count++));
-    return count;
-  }
+
 
   const coulmns = [
     {
@@ -204,9 +195,6 @@ const Freelancer = () => {
       setValidationUnderProgress(row.AccountDetails.ValidationUnderProgress)
       setIsAccountActivated(row.AccountDetails.isAccountActivated)
       setShow(true)
-      console.log(ValidationUnderProgress)
-      console.log(isAccountActivated)
-      console.log(isActive)
     }
   };
 
@@ -230,11 +218,7 @@ const Freelancer = () => {
 
       <br></br>
 
-      {/* <PopUpDelete
 
-        data={data}
-
-      /> */}
       <PopUpDisplayUser
 
         firstName={firstName}

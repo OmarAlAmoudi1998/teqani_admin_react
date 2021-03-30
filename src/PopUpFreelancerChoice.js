@@ -11,11 +11,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
-
+import { useAlert } from 'react-alert'
 
 
 export default function PopUpFreelancerChoice(props) {
-
+    const alert = useAlert()
     const [selectedValue, setSelectedValue] = useState('');
     const [rejectMessage, setRejectMessage] = useState('');
     const uid = props.uid
@@ -45,6 +45,7 @@ export default function PopUpFreelancerChoice(props) {
                     "AccountDetails.isAccountActivated": true,
                     "AccountDetails.RejectedMessage": "",
                 })
+                alert.success('Freelancer has been activated')
         }
         if (selectedValue === 'no') {
             db.collection(dbDirectory).doc(uid)
@@ -54,6 +55,8 @@ export default function PopUpFreelancerChoice(props) {
                     "AccountDetails.RejectedMessage": rejectMessage,
 
                 })
+                alert.success('Freelancer has been rejected')
+
         }
 
     }

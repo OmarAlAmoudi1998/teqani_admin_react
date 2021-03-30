@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import './Home.css'
 import { useAlert } from 'react-alert'
 
-export default function PopUpCompEdit(props) {
+export default function PopUpEditPost(props) {
 
 
     const alert = useAlert()
@@ -35,21 +35,7 @@ export default function PopUpCompEdit(props) {
 
     }
 
-    // async function getPostId() {
-
-    //     db.collection(dbDirectory).where("postID", "==", postID)
-    //         .get()
-    //         .then((querySnapshot) => {
-    //             querySnapshot.forEach((doc) => {
-    //                 postId = doc.id
-
-    //             });
-    //         })
-    //         .catch((error) => {
-    //             console.log("Error getting documents: ", error);
-    //         });
-
-    // }
+ 
 
     async function EditPost() {
         if (newTitle != "" && newDescription!="" && newTitle != Title && newDescription != Description){
