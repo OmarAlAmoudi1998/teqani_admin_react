@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import './UserCol.css'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home"
 import Login from "./Login";
-import Users from "./Users";
+// import Users from "./Users";
 import Customers from './Customers.js';
 import Posts from "./Posts";
 import Promo from "./Promo";

@@ -3,7 +3,6 @@ import fire, { auth } from "./config/fire";
 import { db } from "./config/fire";
 import React, { Component, useState, useEffect } from 'react';
 import "firebase/auth";
-import Users from './Users';
 import './Home.css';
 
 
